@@ -1,0 +1,12 @@
+.game__thumb {
+    padding: 5px;
+    border-radius: 4px;
+    background-color: var(--white);
+    color: var(--dark);
+}
+
+.game__platform {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.875rem;
+}
