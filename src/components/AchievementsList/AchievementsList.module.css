@@ -5,3 +5,15 @@
     margin-top: 20px;
 }
 
+@media screen and (min-width: 576px) and (max-width: 960px) {
+    .achievementsList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .achievementsList {
+        grid-template-columns: 1fr;
+    }
+}
+

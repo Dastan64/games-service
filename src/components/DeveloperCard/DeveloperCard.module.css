@@ -1,6 +1,8 @@
 .card {
     width: 304px;
+    margin: 0 auto;
     min-height: 430px;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,10 +69,25 @@
 .cardLine {
     display: flex;
     justify-content: space-between;
+    gap: 5px;
     font-size: 0.875rem;
 }
 
 .cardNumber {
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.875rem;
+}
+
+.cardGameNameLink {
+    border-bottom: 1px solid var(--white);
+    color: var(--white);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.cardGameName {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

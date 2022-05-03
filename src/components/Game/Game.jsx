@@ -14,7 +14,6 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import DlcList from "../DlcList/DlcList";
 import Screenshots from "../Screenshots/Screenshots";
-import DeveloperCard from "../DeveloperCard/DeveloperCard";
 import DevelopersList from "../DevelopersList/DevelopersList";
 
 const Game = () => {
@@ -173,13 +172,14 @@ const Game = () => {
                         {tagsList}
                     </ul>
                 </section>
-                {achievements.length > 0 && <section className={styles.gameAchievements}>
-                    <div className={styles.gameAchievementsTop}>
-                        <h2>{name} achievements:</h2>
-                        <p>{achievements_count} achievements</p>
-                    </div>
-                    <AchievementsList achievements={achievements}/>
-                </section>}
+                {achievements.length > 0 &&
+                    <section className={styles.gameAchievements}>
+                        <div className={styles.gameAchievementsTop}>
+                            <h2>{name} achievements:</h2>
+                            <p>{achievements_count} achievements</p>
+                        </div>
+                        <AchievementsList achievements={achievements}/>
+                    </section>}
                 <section>
                     <h2>Website:</h2>
                     <a className={styles.gameWebsiteLink} href={website}>{website}</a>
@@ -188,11 +188,12 @@ const Game = () => {
                     {systemRequirements}
                 </section>
                 <section>
+                    <h2>{name} created by:</h2>
                     {personDevelopers.length > 0 && <DevelopersList developers={personDevelopers}/>}
                 </section>
-            </section>
-            <section className={styles.rightSection}>
-                <Screenshots screenshots={screenshots}/>
+                <section className={styles.rightSection}>
+                    <Screenshots screenshots={screenshots}/>
+                </section>
             </section>
         </main>
     );
