@@ -3,6 +3,7 @@
     --dark: #202020;
     --white: #fff;
     --black: #000;
+    --cardBackgroundColor: rgb(32, 32, 32);
 }
 
 * {

@@ -1,0 +1,76 @@
+.card {
+    width: 304px;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 0 1 auto;
+    padding: 32px 24px;
+    border-radius: 6px;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 20%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    background-color: var(--cardBackgroundColor);
+}
+
+.cardInfo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.cardImage {
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    width: 128px;
+    height: 128px;
+    max-width: 100%;
+}
+
+.cardName {
+    margin-top: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 28px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.cardLink {
+    color: var(--white);
+}
+
+.cardRole {
+    font-size: 0.75rem;
+    margin-top: 8px;
+}
+
+.cardTopLine {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+}
+
+.cardKnown {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.cardLine {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+}
+
+.cardNumber {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.875rem;
+}
