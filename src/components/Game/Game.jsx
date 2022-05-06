@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import styles from "./Game.module.css";
-import reusable from "../../reusable/reusable.module.css";
-import {Link, useParams} from "react-router-dom";
-import {formatDate} from "../../utils/formatDate";
-import AchievementsList from "../AchievementsList/AchievementsList";
+import styles from './Game.module.css';
+import clsx from 'clsx';
+import reusable from '../../reusable/reusable.module.css';
+import {Link, useParams} from 'react-router-dom';
+import {formatDate} from '../../utils/formatDate';
+import AchievementsList from '../AchievementsList/AchievementsList';
 import {
     getAchievements,
     getDevelopers,
     getDLCs,
     getGamesFromSameSeries,
     getScreenshots
-} from "../../store/actions/card";
-import {useDispatch, useSelector} from "react-redux";
-import DlcList from "../DlcList/DlcList";
-import Screenshots from "../Screenshots/Screenshots";
-import DevelopersList from "../DevelopersList/DevelopersList";
+} from '../../store/actions/card';
+import {useDispatch, useSelector} from 'react-redux';
+import DlcList from '../DlcList/DlcList';
+import Screenshots from '../Screenshots/Screenshots';
+import DevelopersList from '../DevelopersList/DevelopersList';
 
 const Game = () => {
     const [game, setGame] = useState();
@@ -54,7 +55,7 @@ const Game = () => {
             website
         } = game);
         if (platforms.length > 0) {
-            platformsList = platforms.map(platform => platform.platform.name).join(", ");
+            platformsList = platforms.map(platform => platform.platform.name).join(', ');
             systemRequirements = platforms.map(platform => {
                 return (
                     <div key={platform.platform.id}>
@@ -72,20 +73,29 @@ const Game = () => {
         }
 
         if (genres.length > 0) {
-            genresList = genres.map(genre => genre.name).join(", ");
+            genresList = genres.map(genre => genre.name).join(', ');
         }
         if (developers.length > 0) {
-            developersList = developers.map(developer => developer.name).join(", ");
+            developersList = developers.map(developer => developer.name).join(', ');
         }
         if (publishers.length > 0) {
-            publishersList = publishers.map(publisher => publisher.name).join(", ");
+            publishersList = publishers.map(publisher => publisher.name).join(', ');
         }
         if (tags.length > 0) {
             tagsList = tags.map((tag, index) => <li className={reusable.listItem}
-                                                    key={tag.id}>{(index ? ", " : "") + tag.name}</li>);
+                                                    key={tag.id}>{(index ? ', ' : '') + tag.name}</li>);
         }
     }
 
+    //Conditional classes
+
+    const ratingNumberStyle = clsx({
+        [styles.lowRating]: metacritic < 50,
+        [styles.midRating]: metacritic >= 50 && metacritic <= 74,
+        [styles.highRating]: metacritic >= 75 && metacritic <= 100,
+    });
+
+    //Retrieving state
     const achievements = useSelector(state => state.game.gameAchievements)
     const gamesFromSameSeries = useSelector(state => state.game.gamesFromSameSeries)
     const dlcs = useSelector(state => state.game.dlcs)
@@ -116,7 +126,7 @@ const Game = () => {
                         </div>
                         <div className="info__grid-item">
                             <h4 className={styles.infoCaption}>Metascore</h4>
-                            <p className={styles.infoText}>{metacritic}</p>
+                            <p className={`${styles.infoRating} ${ratingNumberStyle}`}>{metacritic}</p>
                         </div>
                         <div className="info__grid-item">
                             <h4 className={styles.infoCaption}>Genre</h4>

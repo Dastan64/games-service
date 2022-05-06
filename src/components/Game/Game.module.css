@@ -30,6 +30,21 @@ section {
     text-transform: uppercase;
 }
 
+.lowRating {
+    color: var(--lowRatingColor);
+    border: 1px solid var(--lowRatingBorder);
+}
+
+.midRating {
+    color: var(--midRatingColor);
+    border: 1px solid var(--midRatingBorder);
+}
+
+.highRating {
+    color: var(--highRatingColor);
+    border: 1px solid var(--highRatingBorder);
+}
+
 .gamePlaytime {
     font-size: 0.75rem;
     letter-spacing: 2px;
@@ -77,6 +92,16 @@ section {
 
 .infoText {
     text-transform: capitalize;
+}
+
+.infoRating {
+    display: inline-block;
+    min-width: 32px;
+    padding: 2px 0;
+    text-align: center;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-weight: 700;
 }
 
 .gameAchievementsTop {

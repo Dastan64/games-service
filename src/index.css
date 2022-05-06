@@ -4,6 +4,12 @@
     --white: #fff;
     --black: #000;
     --cardBackgroundColor: rgb(32, 32, 32);
+    --lowRatingColor: #fc4b37;
+    --lowRatingBorder: rgba(252, 75, 55, .4);
+    --midRatingColor: #fdca52;
+    --midRatingBorder: rgba(253, 202, 82, .4);
+    --highRatingColor: #6dc849;
+    --highRatingBorder: rgba(109, 200, 73, .4);
 }
 
 * {
