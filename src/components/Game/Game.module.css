@@ -30,21 +30,6 @@ section {
     text-transform: uppercase;
 }
 
-.lowRating {
-    color: var(--lowRatingColor);
-    border: 1px solid var(--lowRatingBorder);
-}
-
-.midRating {
-    color: var(--midRatingColor);
-    border: 1px solid var(--midRatingBorder);
-}
-
-.highRating {
-    color: var(--highRatingColor);
-    border: 1px solid var(--highRatingBorder);
-}
-
 .gamePlaytime {
     font-size: 0.75rem;
     letter-spacing: 2px;
