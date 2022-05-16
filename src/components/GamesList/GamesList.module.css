@@ -1,11 +1,57 @@
 .games {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
     gap: 20px;
+}
+
+.gamesColumn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 520px) {
     .games {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
+}
+
+.displayOptions {
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+}
+
+@media screen and (max-width: 1024px) {
+    .displayOptions {
+        display: none;
+    }
+}
+
+.gamesDisplayButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.gamesDisplayButton {
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.gamesDisplayButtonActive {
+    opacity: 1;
+    cursor: default;
+}
+
+.gamesDisplayButton:hover {
+    opacity: 1;
 }
