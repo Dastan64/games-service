@@ -8,6 +8,11 @@
     z-index: 1;
 }
 
+@media screen and (max-width: 500px) {
+    .gameCard {
+        min-width: auto;
+    }
+}
 .gameCard:hover {
     transform: scale(1.045);
     z-index: 2;
@@ -30,6 +35,12 @@
     background-size: cover;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+}
+
+@media screen and (max-width: 500px) {
+    .gameCardPoster {
+        min-height: 130px;
+    }
 }
 
 .gameCardOverlay {
