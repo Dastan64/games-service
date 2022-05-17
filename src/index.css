@@ -5,11 +5,13 @@
     --black: #000;
     --cardBackgroundColor: rgb(32, 32, 32);
     --lowRatingColor: #fc4b37;
-    --lowRatingBorder: rgba(252, 75, 55, .4);
+    --lowRatingBorder: rgba(252, 75, 55, 0.4);
     --midRatingColor: #fdca52;
-    --midRatingBorder: rgba(253, 202, 82, .4);
+    --midRatingBorder: rgba(253, 202, 82, 0.4);
     --highRatingColor: #6dc849;
-    --highRatingBorder: rgba(109, 200, 73, .4);
+    --highRatingBorder: rgba(109, 200, 73, 0.4);
+    --addedBg: hsla(0, 0%, 100%, 0.1);
+    --green: green;
 }
 
 * {
@@ -25,13 +27,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body, input, button {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+body,
+input,
+button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

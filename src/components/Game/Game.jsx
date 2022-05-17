@@ -29,7 +29,6 @@ const Game = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setGame(data);
       });
     dispatch(getGamesFromSameSeries(slug));
@@ -158,12 +157,14 @@ const Game = () => {
               <h4 className={styles.infoCaption}>Platforms</h4>
               <p className={styles.infoText}>{platformsList}</p>
             </div>
-            <div className="info__grid-item">
-              <h4 className={styles.infoCaption}>Metascore</h4>
-              <p className={`${styles.infoRating} ${ratingNumberStyle}`}>
-                {metacritic}
-              </p>
-            </div>
+            {metacritic && (
+              <div className="info__grid-item">
+                <h4 className={styles.infoCaption}>Metascore</h4>
+                <p className={`${styles.infoRating} ${ratingNumberStyle}`}>
+                  {metacritic}
+                </p>
+              </div>
+            )}
             <div className="info__grid-item">
               <h4 className={styles.infoCaption}>Genre</h4>
               <p className={styles.infoText}>{genresList}</p>
@@ -235,12 +236,12 @@ const Game = () => {
           </a>
         </section>
         <section>{systemRequirements}</section>
-        <section>
-          <h2>{name} created by:</h2>
-          {personDevelopers.length > 0 && (
+        {personDevelopers.length > 0 && (
+          <section>
+            <h2>{name} created by:</h2>
             <DevelopersList developers={personDevelopers} />
-          )}
-        </section>
+          </section>
+        )}
         <section className={styles.rightSection}>
           <h2>{name} screenshots:</h2>
           <Screenshots screenshots={screenshots} />

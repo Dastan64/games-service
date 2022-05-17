@@ -1,22 +1,40 @@
-import styles from './GameCard.module.css';
-import reusableStyles from '../../reusable/reusable.module.css';
-import noImage from '../../assets/images/no-image.png';
-import { formatDate } from '../../utils/formatDate';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+
+import styles from './GameCard.module.css';
+import reusableStyles from '../../reusable/reusable.module.css';
+
+import noImage from '../../assets/images/no-image.png';
+import exceptionalIcon from '../../assets/images/exceptional.png';
+import recommendedIcon from '../../assets/images/recommended.png';
+
+import { formatDate } from '../../utils/formatDate';
+import { platforms as platformsList } from '../../platforms';
 
 const GameCard = ({ game }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const dispatch = useDispatch();
   const cardRef = useRef(null);
 
-  let name, platforms, background_image, metacritic, released, slug, genres, id;
+  let added,
+    name,
+    platforms,
+    ratings,
+    background_image,
+    metacritic,
+    released,
+    slug,
+    genres,
+    id;
   if (game) {
     ({
+      added,
       name,
       platforms,
+      ratings,
       genres,
       background_image,
       metacritic,
@@ -25,6 +43,13 @@ const GameCard = ({ game }) => {
       id,
     } = game);
   }
+
+  const platformIcons = platforms.map((gamePlatform) => {
+    const obj = platformsList.find((platform) =>
+      platform.slug.includes(gamePlatform.platform.slug)
+    );
+    return obj && <img key={uuidv4()} src={obj.img} alt="" draggable="false" />;
+  });
 
   const ratingNumberStyle = clsx({
     [reusableStyles.lowRating]: metacritic < 50,
@@ -46,9 +71,9 @@ const GameCard = ({ game }) => {
 
   return (
     <Link to={`/game/${slug}`}>
-      <article className={styles.game} data-id={id} ref={cardRef}>
+      <article className={styles.gameCard} data-id={id} ref={cardRef}>
         <div
-          className={styles.poster}
+          className={styles.gameCardPoster}
           style={{
             backgroundImage: `url(${
               background_image ? background_image : noImage
@@ -78,23 +103,42 @@ const GameCard = ({ game }) => {
             </button>
           </div>
         </div>
-        <div className={styles.game__info}>
-          {/*<div className={styles.game__platforms}>*/}
-          {/*    {platforms.length > 0 && platforms.map(platform => <PlatformMiniThumb*/}
-          {/*        platformName={platform.platform.name}*/}
-          {/*        key={platform.platform.id}/>)}*/}
-          {/*</div>*/}
-          <div className={styles.game__bottom}>
-            <h3 className={styles.game__title}>{name}</h3>
+        <div className={styles.gameCardInfo}>
+          <div className={styles.gameCardPlatforms}>
+            <div className={styles.gameCardPlatformsIcons}>{platformIcons}</div>
             {metacritic && (
-              <span className={`${styles.game__rating} ${ratingNumberStyle}`}>
+              <span className={`${styles.gameCardRating} ${ratingNumberStyle}`}>
                 {metacritic}
               </span>
             )}
           </div>
-          <ul className={styles.gameMoreInfo}>
+          <div className={styles.gameCardTitleContainer}>
+            <h3 className={styles.gameCardTitle}>{name}</h3>
+          </div>
+          <div className={styles.gameCardAddedThumb}>
+            <svg
+              className="SVGInline-svg game-card-button__icon-svg game-card-button__icon_12-svg game-card-button__icon_with-offset-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 12 12"
+            >
+              <g fill="#fff" fillRule="evenodd">
+                <rect width="3" height="12" x="4.5" rx=".75"></rect>
+                <rect
+                  width="3"
+                  height="12"
+                  x="4.5"
+                  rx=".75"
+                  transform="rotate(-90 6 6)"
+                ></rect>
+              </g>
+            </svg>
+            <span>{added}</span>
+          </div>
+          <ul className={styles.gameCardMoreInfo}>
             <li>
-              <span className={styles.gameMoreInfoCaption}>Release date:</span>
+              <span className={styles.gameCardMoreInfoCaption}>
+                Release date:
+              </span>
               <span>{formatDate(released)}</span>
             </li>
             <li>
