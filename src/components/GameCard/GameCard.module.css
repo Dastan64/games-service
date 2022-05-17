@@ -8,14 +8,22 @@
     z-index: 1;
 }
 
+.game:hover .gameCardOverlay {
+    opacity: 1;
+}
+
 .gameCardOverlay {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 100%;
     height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .gameCardBookmarkBtn {
@@ -26,6 +34,11 @@
     height: 24px;
     border: none;
     background-color: transparent;
+}
+
+.gameCardBookmarkBtnActive > svg,
+.gameCardBookmarkBtn:hover > svg {
+    fill: var(--white);
 }
 
 .poster {

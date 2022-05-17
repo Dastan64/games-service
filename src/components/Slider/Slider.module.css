@@ -1,8 +1,0 @@
-.swiperButtonPrev::after,
-.swiperButtonNext::after {
-    content: "";
-}
-
-.swiperButtonPrev img {
-    transform: rotate(180deg);
-}

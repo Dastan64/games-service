@@ -1,6 +1,24 @@
 .loader {
-    display: block;
-    margin: 40px auto 0;
+    position: relative;
     width: 200px;
-    height: 200px;
+    height: 22px;
+    margin: 100px auto 0;
+    border: 2px solid;
+    border-radius: 20px;
+    color: var(--white);
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    margin: 2px;
+    border-radius: inherit;
+    inset: 0 100% 0 0;
+    background: currentColor;
+    animation: loader 2s infinite;
+}
+@keyframes loader {
+    100% {
+        inset: 0;
+    }
 }

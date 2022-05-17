@@ -1,12 +1,9 @@
 import React from 'react';
 
-import styles from "./Loader.module.css";
-import spinningCircles from "../../assets/images/spinning-circles.svg";
+import styles from './Loader.module.css';
 
 const Loader = () => {
-    return (
-        <img className={styles.loader} src={spinningCircles} alt=""/>
-    );
+  return <div className={styles.loader}></div>;
 };
 
 export default Loader;
