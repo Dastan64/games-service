@@ -9,6 +9,7 @@ import GamesList from '../GamesList/GamesList';
 import Header from '../Header/Header';
 import Game from '../Game/Game';
 import Aside from '../Aside/Aside';
+import SharedLayout from '../SharedLayout/SharedLayout';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -29,13 +30,13 @@ const App = () => {
 
     return (
         <div className={styles.app}>
-            <Header/>
             <Routes>
-                <Route path="/" element={<GamesList games={games}/>}/>
+                <Route path="/" element={<SharedLayout/>}>
+                    <Route index element={<GamesList games={games}/>}/>
+                </Route>
                 <Route path="/game/:slug" element={<Game/>}/>
                 <Route path="/games" element={<GamesList games={games}/>}/>
             </Routes>
-            <Aside/>
         </div>
     );
 };
