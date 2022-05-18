@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import styles from "./HeaderSearch.module.css";
-import {useDispatch} from "react-redux";
+import styles from './HeaderSearch.module.css';
+import {useDispatch} from 'react-redux';
+import {searchGames} from '../../store/actions/games';
 
 const HeaderSearch = () => {
     const [inputValue, setInputValue] = useState('');
@@ -15,19 +16,11 @@ const HeaderSearch = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (inputValue === "") {
+        if (inputValue === '') {
             return;
         }
-        fetch(`https://api.rawg.io/api/games?search=${inputValue}&key=3f440a1115914382a87c089c5251f2a7`).then(response => response.json()).then(data => {
-            console.log(data)
-            dispatch({
-                type: "SEARCH_GAMES",
-                payload: data.results,
-            })
-        })
-
+        dispatch(searchGames(inputValue))
         navigate('/games')
-
     }
 
     return (
