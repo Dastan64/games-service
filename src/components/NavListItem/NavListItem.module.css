@@ -1,0 +1,53 @@
+.navListItem {
+    list-style: none;
+}
+
+.navListItem:hover svg, .navListItem:hover path {
+    fill: var(--darkBg);
+}
+
+.navListItem:hover .navListItemIconContainer {
+    background-color: var(--white);
+}
+
+.navListItem a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 15s ease;
+
+}
+
+.navListItemIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--addedBg);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.navListItemIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navListItemIcon svg {
+    width: 20px;
+    height: 20px;
+    transition: fill 0.3s ease;
+}
+
+.navListItemIcon path {
+    transition: fill 0.3s ease;
+}
+
+.navListItemText {
+    font-size: 1rem;
+    color: var(--white);
+}
