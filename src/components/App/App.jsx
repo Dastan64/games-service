@@ -6,9 +6,7 @@ import {Routes, Route} from 'react-router-dom';
 
 //Components
 import GamesList from '../GamesList/GamesList';
-import Header from '../Header/Header';
 import Game from '../Game/Game';
-import Aside from '../Aside/Aside';
 import SharedLayout from '../SharedLayout/SharedLayout';
 
 const App = () => {
@@ -17,7 +15,7 @@ const App = () => {
 
     useEffect(() => {
         fetch(
-            'https://api.rawg.io/api/games?dates=2021-01-01,2021-12-31&platforms=18,1,7&ordering=-added&key=3f440a1115914382a87c089c5251f2a7'
+            `${process.env.REACT_APP_BASE_URL}games?dates=2021-01-01,2021-12-31&platforms=18,1,7&ordering=-added&key=${process.env.REACT_APP_API_KEY}`
         )
             .then((response) => response.json())
             .then((data) => {
