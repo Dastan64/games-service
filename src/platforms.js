@@ -1,37 +1,41 @@
-import pc from "./assets/images/pc.svg";
-import ps from "./assets/images/ps.svg";
-import xbox from "./assets/images/xbox.svg";
-import nintendo from "./assets/images/nintendo.svg";
-import ios from "./assets/images/ios.svg";
-import linux from "./assets/images/linux.svg";
+import pc from './assets/images/pc.svg';
+import ps from './assets/images/ps4.svg';
+import ps5 from './assets/images/ps5.svg';
+import xbox from './assets/images/xbox.svg';
+import nintendo from './assets/images/nintendo.svg';
+import ios from './assets/images/ios.svg';
+import linux from './assets/images/linux.svg';
 
 export const platforms = [
     {
-        slug: "pc",
+        slug: 'pc',
         img: pc,
     },
     {
-        slug: "playstation4",
+        slug: 'playstation4',
         img: ps,
+    }, {
+        slug: 'playstation5',
+        img: ps5,
     },
     {
-        slug: "xbox-series-s",
+        slug: 'xbox-series-s',
         img: xbox,
     },
     {
-        slug: "xbox-series-x",
+        slug: 'xbox-series-x',
         img: xbox,
     },
     {
-        slug: "nintendo-switch",
+        slug: 'nintendo-switch',
         img: nintendo,
     },
     {
-        slug: "macos",
+        slug: 'macos',
         img: ios,
     },
     {
-        slug: "linux",
+        slug: 'linux',
         img: linux,
     },
 ];

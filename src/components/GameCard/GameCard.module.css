@@ -1,6 +1,6 @@
 .gameCard {
     position: relative;
-    min-width: 479px;
+    width: 100%;
     max-width: 480px;
     border-radius: 12px;
     transition: transform 0.3s ease-in-out;
@@ -9,10 +9,13 @@
 }
 
 @media screen and (max-width: 500px) {
-    .gameCard {
-        min-width: auto;
+    .gameCard .gameCardMoreInfo {
+        display: block;
+        position: static;
+        padding-bottom: 0;
     }
 }
+
 .gameCard:hover {
     transform: scale(1.045);
     z-index: 2;
@@ -39,7 +42,7 @@
 
 @media screen and (max-width: 500px) {
     .gameCardPoster {
-        min-height: 130px;
+        min-height: 160px;
     }
 }
 
@@ -69,7 +72,8 @@
 
 .gameCardBookmarkBtnActive > svg,
 .gameCardBookmarkBtn:hover > svg {
-    fill: var(--white);
+    fill: var(--softRed);
+    stroke: var(--softRed)
 }
 
 .gameCardInfo {
@@ -100,8 +104,8 @@
 }
 
 .gameCardPlatforms img {
-    width: 12px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
 }
 
 .gameCardTitleContainer {
