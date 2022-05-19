@@ -1,15 +1,32 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import styled from './PlatformCard.module.css';
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
 const PlatformCard = ({platform}) => {
-    const {image, name, image_background, games_count, games} = platform;
+    const [isFollowed, setIsFollowed] = useState(false);
+    const {slug, id, image, name, year_start, image_background, games_count, games} = platform;
+    const platformCardRef = useRef(null);
+    const dispatch = useDispatch();
+
+    function handleFollow() {
+        const id = +platformCardRef.current.dataset.id;
+        dispatch({
+            type: 'FOLLOW_PLATFORM',
+            payload: id,
+        })
+        setIsFollowed(!isFollowed);
+    }
+
+
     return (
         <article
             className={styled.card}
             style={{
                 backgroundImage: `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${image_background})`,
             }}
+            data-id={id}
+            ref={platformCardRef}
         >
             <div className={styled.cardInfo}>
                 {image && (
@@ -19,15 +36,20 @@ const PlatformCard = ({platform}) => {
                             src={image}
                             alt={name}
                             draggable={false}
+                            loading="lazy"
                         />
                     </div>
                 )}
-                <Link className={styled.cardLink} to={'/'}>
+                <Link className={styled.cardLink} to={`/games/${slug}`}>
                     <h3 className={styled.cardName}>{name}</h3>
                 </Link>
+                {year_start && <p className={styled.yearStart}>
+                    {year_start}
+                </p>}
             </div>
-            <button className={styled.cardFollowBtn} type="button">Follow</button>
-
+            <button className={`${styled.cardFollowBtn} ${isFollowed ? styled.cardFollowBtnActive : ''}`} type="button"
+                    onClick={handleFollow}>{isFollowed ? 'Following' : 'Follow'}
+            </button>
             <div className={styled.cardBottom}>
                 <div className={styled.cardTopLine}>
                     <h4>Popular items</h4>

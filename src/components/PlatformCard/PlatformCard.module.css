@@ -44,6 +44,11 @@
     color: var(--white);
 }
 
+.yearStart {
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
 .cardFollowBtn {
     cursor: pointer;
     display: block;
@@ -57,7 +62,7 @@
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.cardFollowBtn:hover {
+.cardFollowBtnActive, .cardFollowBtn:hover {
     background-color: var(--white);
     color: var(--black);
 }
