@@ -64,10 +64,17 @@
     position: absolute;
     top: 2px;
     right: 5px;
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     border: none;
     background-color: transparent;
+}
+
+@media screen and (max-width: 575px) {
+    .gameCardBookmarkBtn {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .gameCardBookmarkBtnActive > svg,

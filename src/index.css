@@ -28,8 +28,13 @@ html {
 body {
     margin: 0;
     background-color: var(--darkBg);
+    color: var(--white);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--white);
 }
 
 body,

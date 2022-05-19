@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const NavListItem = ({listItem}) => {
     return (
         <li className={styles.navListItem}>
-            <Link to={'/'}>
+            <Link to={`${listItem.route}`}>
                 <div className={styles.navListItemIconContainer}>
                     <span className={styles.navListItemIcon} dangerouslySetInnerHTML={{__html: listItem.img}}></span>
                     {/*<img className={styles.navListItemIcon} src={listItem.img} alt=""/>*/}

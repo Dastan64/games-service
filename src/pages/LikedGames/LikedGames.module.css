@@ -1,0 +1,6 @@
+.likedGamesLink {
+    display: inline-block;
+    margin-top: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--white);
+}

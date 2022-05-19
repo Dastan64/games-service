@@ -242,10 +242,10 @@ const Game = () => {
                         <DevelopersList developers={personDevelopers}/>
                     </section>
                 )}
-                <section className={styles.rightSection}>
+                {screenshots.length > 0 && <section className={styles.rightSection}>
                     <h2>{name} screenshots:</h2>
                     <Screenshots screenshots={screenshots}/>
-                </section>
+                </section>}
             </section>
         </main>
     );

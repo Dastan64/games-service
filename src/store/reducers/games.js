@@ -2,7 +2,7 @@ import {LOAD_GAMES, SEARCH_GAMES} from '../actions/games';
 
 const initialState = {
     games: [],
-    likedGames: [],
+    likedGamesIds: [],
 }
 
 export const gamesReducer = (state = initialState, action) => {
@@ -12,7 +12,7 @@ export const gamesReducer = (state = initialState, action) => {
         case SEARCH_GAMES:
             return {...state, games: action.payload}
         case 'ADD_GAME':
-            return {...state, likedGames: [...state.likedGames, action.payload]}
+            return {...state, likedGamesIds: [...state.likedGamesIds, action.payload]}
         default:
             return state;
     }

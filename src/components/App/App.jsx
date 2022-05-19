@@ -9,6 +9,8 @@ import GamesList from '../GamesList/GamesList';
 import Game from '../Game/Game';
 import SharedLayout from '../SharedLayout/SharedLayout';
 import {getInitialGames} from '../../store/actions/games';
+import LikedGames from '../../pages/LikedGames/LikedGames';
+import Platforms from '../../pages/Platforms/Platforms';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -25,6 +27,8 @@ const App = () => {
                 <Route path="/" element={<SharedLayout/>}>
                     <Route index element={<GamesList games={games}/>}/>
                     <Route path="games" element={<GamesList games={games}/>}/>
+                    <Route path="games/liked" element={<LikedGames/>}/>
+                    <Route path="platforms" element={<Platforms/>}/>
                 </Route>
                 <Route path="/game/:slug" element={<Game/>}/>
             </Routes>
