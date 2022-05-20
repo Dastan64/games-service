@@ -19,7 +19,7 @@ const PlatformCard = ({platform}) => {
                 payload: {
                     ...specificPlatform,
                     isSolid: true,
-                    route: specificPlatform.slug,
+                    route: `/games/${specificPlatform.slug}`,
                 },
             })
         } else {
