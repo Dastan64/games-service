@@ -3,7 +3,7 @@ import ps from './assets/images/ps4.svg';
 import ps5 from './assets/images/ps5.svg';
 import xbox from './assets/images/xbox.svg';
 import nintendo from './assets/images/nintendo.svg';
-import ios from './assets/images/ios.svg';
+import ios from './assets/images/macos.svg';
 import linux from './assets/images/linux.svg';
 
 export const platforms = [

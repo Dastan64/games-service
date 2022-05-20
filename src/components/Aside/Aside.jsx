@@ -1,17 +1,17 @@
 import React from 'react';
-import {navigation} from '../../navigation';
 import styled from './Aside.module.css';
-import NavList from '../NavList/NavList';
-
-import {v4 as uuidv4} from 'uuid';
-
+import NavSection from '../NavSection/NavSection';
+import {mockData} from '../../static';
+import {useSelector} from 'react-redux';
 
 const Aside = () => {
+    const followingPlatforms = useSelector(state => state.platforms.followedPlatforms);
     return (
         <aside className={styled.aside}>
-            {navigation.map(nav => {
-                return <NavList navObj={nav} key={uuidv4()}/>
-            })}
+            <NavSection title="Following" listItems={followingPlatforms}/>
+            <NavSection title="You" listItems={mockData.personal}/>
+            <NavSection title="Browse" listItems={mockData.browse}/>
+            <NavSection title="Platforms" listItems={mockData.platforms}/>
         </aside>
     );
 };

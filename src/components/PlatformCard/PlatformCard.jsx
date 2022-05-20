@@ -1,20 +1,33 @@
 import React, {useRef, useState} from 'react';
 import styled from './PlatformCard.module.css';
 import {Link} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const PlatformCard = ({platform}) => {
     const [isFollowed, setIsFollowed] = useState(false);
+    const platforms = useSelector(state => state.platforms.platforms);
     const {slug, id, image, name, year_start, image_background, games_count, games} = platform;
     const platformCardRef = useRef(null);
     const dispatch = useDispatch();
 
     function handleFollow() {
         const id = +platformCardRef.current.dataset.id;
-        dispatch({
-            type: 'FOLLOW_PLATFORM',
-            payload: id,
-        })
+        const specificPlatform = platforms.find(platform => platform.id === id);
+        if (!isFollowed) {
+            dispatch({
+                type: 'FOLLOW_PLATFORM',
+                payload: {
+                    ...specificPlatform,
+                    isSolid: true,
+                    route: specificPlatform.slug,
+                },
+            })
+        } else {
+            dispatch({
+                type: 'UNFOLLOW_PLATFORM',
+                payload: id,
+            })
+        }
         setIsFollowed(!isFollowed);
     }
 

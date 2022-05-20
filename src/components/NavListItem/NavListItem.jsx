@@ -1,18 +1,23 @@
 import React from 'react';
-import styles from './NavListItem.module.css';
 import {Link} from 'react-router-dom';
+import styled from './NavListItem.module.css';
 
 const NavListItem = ({listItem}) => {
     return (
-        <li className={styles.navListItem}>
-            <Link to={`${listItem.route}`}>
-                <div className={styles.navListItemIconContainer}>
-                    <span className={styles.navListItemIcon} dangerouslySetInnerHTML={{__html: listItem.img}}></span>
-                    {/*<img className={styles.navListItemIcon} src={listItem.img} alt=""/>*/}
-                </div>
-                <span className={styles.navListItemText}>{listItem.text}</span>
+        <li className={styled.navListItem}>
+            <Link to={listItem.route}>
+                {listItem.isSolid ?
+                    <img className={`${styled.navListItemIcon} ${styled.navListItemIconSolid}`}
+                         src={listItem.image_background} alt=""/>
+                    :
+                    <div className={styled.navListItemIconContainer}>
+                        <img className={styled.navListItemIcon} src={listItem.image_background} alt=""/>
+                    </div>
+                }
+                <span className={styled.navListItemText}>{listItem.name}</span>
             </Link>
         </li>
+
     );
 };
 

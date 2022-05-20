@@ -1,13 +1,10 @@
 .navListItem {
     list-style: none;
+    transition: transform 0.2s ease;
 }
 
-.navListItem:hover svg, .navListItem:hover path {
-    fill: var(--darkBg);
-}
-
-.navListItem:hover .navListItemIconContainer {
-    background-color: var(--white);
+.navListItem:hover {
+    transform: translateX(10px);
 }
 
 .navListItem a {
@@ -32,19 +29,15 @@
 }
 
 .navListItemIcon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.navListItemIcon svg {
     width: 20px;
     height: 20px;
-    transition: fill 0.3s ease;
 }
 
-.navListItemIcon path {
-    transition: fill 0.3s ease;
+.navListItemIconSolid {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 6px;
 }
 
 .navListItemText {

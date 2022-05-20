@@ -11,6 +11,11 @@ export const platformsReducer = (state = initialState, action) => {
             return {...state, platforms: action.payload}
         case 'FOLLOW_PLATFORM':
             return {...state, followedPlatforms: [...state.followedPlatforms, action.payload]}
+        case 'UNFOLLOW_PLATFORM':
+            return {
+                ...state,
+                followedPlatforms: state.followedPlatforms.filter(followedPlatform => followedPlatform.id !== action.payload)
+            }
         default:
             return state;
     }
