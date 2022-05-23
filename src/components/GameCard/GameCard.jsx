@@ -1,16 +1,16 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import {useRef, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {v4 as uuidv4} from 'uuid';
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './GameCard.module.css';
 import reusableStyles from '../../reusable/reusable.module.css';
 
 import noImage from '../../assets/images/no-image.png';
 
-import {formatDate} from '../../utils/formatDate';
-import {platforms as platformsList} from '../../platforms';
+import { formatDate } from '../../utils/formatDate';
+import { platforms as platformsList } from '../../platforms';
 
 const GameCard = ({game}) => {
     const [isLiked, setIsLiked] = useState(false);
@@ -42,7 +42,7 @@ const GameCard = ({game}) => {
         } = game);
     }
 
-    const platformIcons = platforms.map((gamePlatform) => {
+    const platformIcons = platforms && platforms.map((gamePlatform) => {
         const obj = platformsList.find((platform) =>
             platform.slug.includes(gamePlatform.platform.slug)
         );

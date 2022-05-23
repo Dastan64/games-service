@@ -4,20 +4,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import { getGames } from '../../store/actions/games';
+import { getGenres } from '../../store/actions/genres';
+
 //Components
 import GamesList from '../GamesList/GamesList';
 import Game from '../Game/Game';
 import SharedLayout from '../SharedLayout/SharedLayout';
-import { getInitialGames } from '../../store/actions/games';
 import LikedGames from '../../pages/LikedGames/LikedGames';
 import Platforms from '../../pages/Platforms/Platforms';
 import PlatformDetail from '../../pages/PlatformDetail/PlatformDetail';
+import GenreDetail from '../../pages/GenreDetail/GenreDetail';
 
 const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getInitialGames())
+        dispatch(getGames())
+        dispatch(getGenres())
     }, [dispatch]);
 
     const games = useSelector((state) => state.games.games);
@@ -29,6 +33,7 @@ const App = () => {
                     <Route index element={<GamesList games={games}/>}/>
                     <Route path="games" element={<GamesList games={games}/>}/>
                     <Route path="games/:platformSlug" element={<PlatformDetail/>}/>
+                    <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
                     <Route path="games/liked" element={<LikedGames/>}/>
                     <Route path="platforms" element={<Platforms/>}/>
                 </Route>
