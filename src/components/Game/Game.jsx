@@ -1,11 +1,17 @@
-import React, {useEffect, useState} from 'react';
+//Hooks
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+
+//Styles
 import styles from './Game.module.css';
 import reusableStyles from '../../reusable/reusable.module.css';
 import clsx from 'clsx';
-import reusable from '../../reusable/reusable.module.css';
-import {Link, useParams} from 'react-router-dom';
-import {formatDate} from '../../utils/formatDate';
-import AchievementsList from '../AchievementsList/AchievementsList';
+
+//Utils
+import { formatDate } from '../../utils/formatDate';
+
+//Actions
 import {
     getAchievements,
     getDevelopers,
@@ -13,19 +19,21 @@ import {
     getGamesFromSameSeries,
     getScreenshots,
 } from '../../store/actions/game';
-import {useDispatch, useSelector} from 'react-redux';
+
+//Components
 import DlcList from '../DlcList/DlcList';
 import Screenshots from '../Screenshots/Screenshots';
 import DevelopersList from '../DevelopersList/DevelopersList';
+import AchievementsList from '../AchievementsList/AchievementsList';
 
 const Game = () => {
-    const [game, setGame] = useState();
+    const [game, setGame] = useState({});
     const {slug} = useParams();
     const dispatch = useDispatch();
 
     useEffect(() => {
         fetch(
-            `https://api.rawg.io/api/games/${slug}?key=3f440a1115914382a87c089c5251f2a7`
+            `${process.env.REACT_APP_BASE_URL}games/${slug}?key=${process.env.REACT_APP_API_KEY}`
         )
             .then((response) => response.json())
             .then((data) => {
@@ -38,85 +46,67 @@ const Game = () => {
         dispatch(getDevelopers(slug));
     }, [slug, dispatch]);
 
-    let released,
+    let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;
+
+    const {
+        released,
         name,
         description,
         background_image,
         platforms,
-        platformsList,
         genres,
-        genresList,
         metacritic,
         developers,
-        developersList,
         publishers,
-        publishersList,
         tags,
-        tagsList,
         achievements_count,
         website,
-        systemRequirements;
+    } = game;
 
-    if (game) {
-        ({
-            released,
-            name,
-            description,
-            background_image,
-            platforms,
-            genres,
-            metacritic,
-            developers,
-            publishers,
-            tags,
-            achievements_count,
-            website,
-        } = game);
-        if (platforms.length > 0) {
-            platformsList = platforms
-                .map((platform) => platform.platform.name)
-                .join(', ');
-            systemRequirements = platforms.map((platform) => {
-                return (
-                    <div key={platform.platform.id}>
-                        <h2 className={styles.gameRequirementsHeading}>
-                            System requirements for {platform.platform.name}
-                        </h2>
-                        {platform.requirements && (
-                            <>
-                                <p className={styles.gameRequirementsText}>
-                                    {platform.requirements.minimum}
-                                </p>
-                                <p className={styles.gameRequirementsText}>
-                                    {platform.requirements.recommended}
-                                </p>
-                            </>
-                        )}
-                    </div>
-                );
-            });
-        }
+    if (platforms?.length > 0) {
+        platformsList = platforms
+            .map((platform) => platform.platform.name)
+            .join(', ');
 
-        if (genres.length > 0) {
-            genresList = genres.map((genre) => genre.name).join(', ');
-        }
-        if (developers.length > 0) {
-            developersList = developers.map((developer) => developer.name).join(', ');
-        }
-        if (publishers.length > 0) {
-            publishersList = publishers.map((publisher) => publisher.name).join(', ');
-        }
-        if (tags.length > 0) {
-            tagsList = tags.map((tag, index) => (
-                <li className={reusable.listItem} key={tag.id}>
-                    {(index ? ', ' : '') + tag.name}
-                </li>
-            ));
-        }
+        systemRequirements = platforms.filter(platform => Object.keys(platform.requirements).length > 0).map((platform) => {
+            return (
+                <div key={platform.platform.id}>
+                    <h2 className={styles.gameRequirementsHeading}>
+                        System requirements for {platform.platform.name}
+                    </h2>
+                    {platform.requirements && (
+                        <>
+                            <p className={styles.gameRequirementsText}>
+                                {platform.requirements.minimum}
+                            </p>
+                            <p className={styles.gameRequirementsText}>
+                                {platform.requirements.recommended}
+                            </p>
+                        </>
+                    )}
+                </div>
+            );
+        });
+    }
+
+    if (genres?.length > 0) {
+        genresList = genres.map((genre) => genre.name).join(', ');
+    }
+    if (developers?.length > 0) {
+        developersList = developers.map((developer) => developer.name).join(', ');
+    }
+    if (publishers?.length > 0) {
+        publishersList = publishers.map((publisher) => publisher.name).join(', ');
+    }
+    if (tags?.length > 0) {
+        tagsList = tags.map((tag, index) => (
+            <li className={reusableStyles.listItem} key={tag.id}>
+                {(index ? ', ' : '') + tag.name}
+            </li>
+        ));
     }
 
     //Conditional classes
-
     const ratingNumberStyle = clsx({
         [reusableStyles.lowRating]: metacritic < 50,
         [reusableStyles.midRating]: metacritic >= 50 && metacritic <= 74,
@@ -197,10 +187,10 @@ const Game = () => {
                 {gamesFromSameSeries.length > 0 && (
                     <section>
                         <h2>Other games in the series:</h2>
-                        <ul className={reusable.listMarkered}>
-                            {gamesFromSameSeries.map((game, index) => (
+                        <ul className={reusableStyles.listMarkered}>
+                            {gamesFromSameSeries.map((game) => (
                                 <li key={game.id}>
-                                    <Link to={`/game/${game.slug}`} className={reusable.link}>
+                                    <Link to={`/game/${game.slug}`} className={reusableStyles.link}>
                                         {game.name}
                                     </Link>
                                 </li>
@@ -214,12 +204,12 @@ const Game = () => {
                             <h2>DLC's and editions:</h2>
                             <DlcList dlcs={dlcs}/>
                         </section>
-                        <section>
-                            <h2>Tags:</h2>
-                            <ul className={reusable.list}>{tagsList}</ul>
-                        </section>
                     </>
                 )}
+                <section>
+                    <h2>Tags:</h2>
+                    <ul className={reusableStyles.list}>{tagsList}</ul>
+                </section>
                 {achievements.length > 0 && (
                     <section className={styles.gameAchievements}>
                         <div className={styles.gameAchievementsTop}>
