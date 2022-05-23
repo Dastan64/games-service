@@ -1,14 +1,14 @@
 import styles from './App.module.css';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {useEffect} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 //Components
 import GamesList from '../GamesList/GamesList';
 import Game from '../Game/Game';
 import SharedLayout from '../SharedLayout/SharedLayout';
-import {getInitialGames} from '../../store/actions/games';
+import { getInitialGames } from '../../store/actions/games';
 import LikedGames from '../../pages/LikedGames/LikedGames';
 import Platforms from '../../pages/Platforms/Platforms';
 import PlatformDetail from '../../pages/PlatformDetail/PlatformDetail';

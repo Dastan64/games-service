@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styled from './Platforms.module.css';
 
-import {getPlatforms} from '../../store/actions/platforms';
+import { getPlatforms } from '../../store/actions/platforms';
 import PlatformCard from '../../components/PlatformCard/PlatformCard';
 import Loader from '../../components/Loader/Loader';
 

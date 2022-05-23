@@ -1,7 +1,7 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import styled from './PlatformCard.module.css';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const PlatformCard = ({platform}) => {
     const [isFollowed, setIsFollowed] = useState(false);
@@ -30,7 +30,6 @@ const PlatformCard = ({platform}) => {
         }
         setIsFollowed(!isFollowed);
     }
-
 
     return (
         <article
