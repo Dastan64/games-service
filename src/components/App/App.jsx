@@ -15,12 +15,14 @@ import LikedGames from '../../pages/LikedGames/LikedGames';
 import Platforms from '../../pages/Platforms/Platforms';
 import PlatformDetail from '../../pages/PlatformDetail/PlatformDetail';
 import GenreDetail from '../../pages/GenreDetail/GenreDetail';
+import { getPlatforms } from '../../store/actions/platforms';
 
 const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getGames())
+        dispatch(getPlatforms())
         dispatch(getGenres())
     }, [dispatch]);
 

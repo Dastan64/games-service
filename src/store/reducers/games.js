@@ -1,4 +1,4 @@
-import {LOAD_GAMES, SEARCH_GAMES} from '../actions/games';
+import { LOAD_GAMES, SEARCH_GAMES } from '../actions/games';
 
 const initialState = {
     games: [],

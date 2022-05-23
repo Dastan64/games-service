@@ -10,40 +10,40 @@ export const platforms = [
     {
         name: 'PC',
         image_background: pc,
-        route: '/route',
+        route: '/games/pc',
     },
     {
         name: 'PlayStation 4',
         image_background: ps4,
-        route: '/route',
+        route: '/games/playstation4',
     }, {
         name: 'PlayStation 5',
         image_background: ps5,
-        route: '/route',
+        route: '/games/playstation5',
     },
     {
         name: 'Xbox Series S',
         image_background: xbox,
-        route: '/route',
+        route: '/games/xbox-series-x',
     },
     {
         name: 'Xbox Series X',
         image_background: xbox,
-        route: '/route',
+        route: '/games/xbox-series-x',
     },
     {
         name: 'Nintendo Switch',
         image_background: nintendo,
-        route: '/route',
+        route: '/games/nintendo-switch',
     },
     {
         name: 'MacOS',
         image_background: macos,
-        route: '/route',
+        route: '/games/macos',
     },
     {
         name: 'Linux',
         image_background: linux,
-        route: '/route',
+        route: '/games/linux',
     },
 ]

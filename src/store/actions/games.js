@@ -1,7 +1,8 @@
 export const LOAD_GAMES = 'LOAD_GAMES';
 export const SEARCH_GAMES = 'SEARCH_GAMES';
 
-export const getGames = (genreId = '2,3,4,5', platformId = '1,4,18,187') => {
+export const getGames = (platformId = '1,4,18,187', genreId = '2,3,4,5') => {
+    console.log(platformId, genreId)
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_BASE_URL}games?page_size=30&dates=2021-01-01,2022-12-31&genres=${genreId}&platforms=${platformId}&ordering=-added&key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => dispatch({
             type: LOAD_GAMES,

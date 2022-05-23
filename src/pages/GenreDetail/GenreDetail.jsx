@@ -25,7 +25,7 @@ const GenreDetail = () => {
         setGenreId(id);
         if (genreId) {
             dispatch(getGenreDetails(genreId))
-            dispatch(getGames(genreId));
+            dispatch(getGames(undefined, genreId));
         }
     }, [dispatch, genreId, genreSlug, genres])
 
