@@ -5,10 +5,10 @@
 }
 
 .gamesColumn {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
     gap: 20px;
-    flex-direction: column;
 }
 
 @media screen and (max-width: 520px) {
