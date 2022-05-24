@@ -1,11 +1,11 @@
 import styles from './GamesList.module.css';
-import React, { useCallback, useState } from 'react';
-
+import React, { useState } from 'react';
 
 //Components
 import GameCard from '../GameCard/GameCard';
 import Loader from '../Loader/Loader';
 
+//Images
 import grid from '../../assets/images/grid.svg';
 import column from '../../assets/images/column.svg';
 
@@ -26,15 +26,13 @@ const GamesList = ({games}) => {
                             <button
                                 className={styles.gamesDisplayButton}
                                 title="Grid view"
-                                onClick={changeView}
-                            >
+                                onClick={changeView}>
                                 <img src={grid} alt=""/>
                             </button>
                             <button
                                 className={styles.gamesDisplayButton}
                                 title="Column view"
-                                onClick={changeView}
-                            >
+                                onClick={changeView}>
                                 <img src={column} alt=""/>
                             </button>
                         </div>

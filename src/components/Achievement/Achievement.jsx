@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from "./Achievement.module.css";
+import styles from './Achievement.module.css';
 
 const Achievement = ({achievement}) => {
-    const {description, name, percent, image} = achievement;
+    const {description, name, percent, image} = achievement ?? {};
     return (
         <div className={styles.achievement}>
             <div className={styles.achievementContainer}>

@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
-import styled from './PlatformCard.module.css';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import styled from './PlatformCard.module.css';
 
 const PlatformCard = ({platform}) => {
     const [isFollowed, setIsFollowed] = useState(false);
     const platforms = useSelector(state => state.platforms.platforms);
-    const {slug, id, image, name, year_start, image_background, games_count, games} = platform;
     const platformCardRef = useRef(null);
     const dispatch = useDispatch();
+    const {slug, id, image, name, year_start, image_background, games_count, games} = platform ?? {};
 
     function handleFollow() {
         const id = +platformCardRef.current.dataset.id;

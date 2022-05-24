@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from './DeveloperCard.module.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const DeveloperCard = ({developer}) => {
-    const {name, image, image_background, positions, games_count, games} =
-        developer;
+    const {name, image, image_background, positions, games_count, games} = developer ?? {};
+
     return (
-        <article
-            className={styled.card}
-            style={{
-                backgroundImage: `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${image_background})`,
-            }}
-        >
+        <article className={styled.card} style={{
+            backgroundImage: `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${image_background})`,
+        }}>
             <div className={styled.cardInfo}>
                 {image && (
                     <div>

@@ -1,8 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from './Aside.module.css';
 import NavSection from '../NavSection/NavSection';
 import { mockData } from '../../static';
-import { useSelector } from 'react-redux';
 
 const Aside = () => {
     const followingPlatforms = useSelector(state => state.platforms.followedPlatforms);

@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-
+import React, { useState } from 'react';
 import styles from './HeaderSearch.module.css';
-import {useDispatch} from 'react-redux';
-import {searchGames} from '../../store/actions/games';
+
+//Hooks
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { searchGames } from '../../store/actions/games';
 
 const HeaderSearch = () => {
     const [inputValue, setInputValue] = useState('');

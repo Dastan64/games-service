@@ -17,30 +17,7 @@ const GameCard = ({game}) => {
     const dispatch = useDispatch();
     const cardRef = useRef(null);
 
-    let added,
-        name,
-        platforms,
-        ratings,
-        background_image,
-        metacritic,
-        released,
-        slug,
-        genres,
-        id;
-    if (game) {
-        ({
-            added,
-            name,
-            platforms,
-            ratings,
-            genres,
-            background_image,
-            metacritic,
-            released,
-            slug,
-            id,
-        } = game);
-    }
+    const {added, name, platforms, genres, background_image, metacritic, released, slug, id} = game ?? {}
 
     const platformIcons = platforms && platforms.map((gamePlatform) => {
         const obj = platformsList.find((platform) =>
@@ -54,6 +31,10 @@ const GameCard = ({game}) => {
         [reusableStyles.midRating]: metacritic >= 50 && metacritic <= 74,
         [reusableStyles.highRating]: metacritic >= 75 && metacritic <= 100,
     });
+
+    const overlayStyle = clsx({
+        [styles.gameCardOverlayRemoved]: isLiked,
+    })
 
     const bookmarkBtnStyle = clsx({
         [styles.gameCardBookmarkBtnActive]: isLiked,
@@ -76,13 +57,11 @@ const GameCard = ({game}) => {
                         backgroundImage: `url(${
                             background_image ? background_image : noImage
                         })`,
-                    }}
-                >
-                    <div className={styles.gameCardOverlay}>
+                    }}>
+                    <div className={`${styles.gameCardOverlay} ${overlayStyle}`}>
                         <button
                             className={`${styles.gameCardBookmarkBtn} ${bookmarkBtnStyle}`}
-                            onClick={handleLike}
-                        >
+                            onClick={handleLike}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke="#fff" strokeWidth={1}>
                                 <path strokeLinecap="round" strokeLinejoin="round"
@@ -97,8 +76,7 @@ const GameCard = ({game}) => {
                         {metacritic && (
                             <span className={`${styles.gameCardRating} ${ratingNumberStyle}`}>
                 {metacritic}
-              </span>
-                        )}
+              </span>)}
                     </div>
                     <div className={styles.gameCardTitleContainer}>
                         <h3 className={styles.gameCardTitle}>{name}</h3>
@@ -107,8 +85,7 @@ const GameCard = ({game}) => {
                         <svg
                             className="SVGInline-svg game-card-button__icon-svg game-card-button__icon_12-svg game-card-button__icon_with-offset-svg"
                             xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 12 12"
-                        >
+                            viewBox="0 0 12 12">
                             <g fill="#fff" fillRule="evenodd">
                                 <rect width="3" height="12" x="4.5" rx=".75"></rect>
                                 <rect
@@ -116,8 +93,7 @@ const GameCard = ({game}) => {
                                     height="12"
                                     x="4.5"
                                     rx=".75"
-                                    transform="rotate(-90 6 6)"
-                                ></rect>
+                                    transform="rotate(-90 6 6)"></rect>
                             </g>
                         </svg>
                         <span>{added}</span>

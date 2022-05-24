@@ -1,30 +1,34 @@
-import React, { useRef, useState } from 'react';
-import styled from './StoreCard.module.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
-const StoreCard = ({store}) => {
+//Styles
+import styled from '../PlatformCard/PlatformCard.module.css';
+
+//Hooks
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+const Card = ({dataObj, data}) => {
     const [isFollowed, setIsFollowed] = useState(false);
-    const stores = useSelector(state => state.stores.stores);
-    const {slug, id, image, name, year_start, image_background, games_count, games} = store;
-    const storeCardRef = useRef(null);
+    const cardRef = useRef(null);
     const dispatch = useDispatch();
+    const {slug, id, image, name, year_start, image_background, games_count, games} = dataObj ?? {};
 
     function handleFollow() {
-        const id = +storeCardRef.current.dataset.id;
-        const specificStore = stores.find(platform => platform.id === id);
+        const id = +cardRef.current.dataset.id;
+        const target = data.find(platform => platform.id === id);
         if (!isFollowed) {
             dispatch({
-                type: 'FOLLOW_PLATFORM',
+                type: 'FOLLOW',
                 payload: {
-                    ...specificStore,
+                    ...target,
                     isSolid: true,
-                    route: `/stores/${specificStore.slug}`,
+                    route: `/games/${target.slug}`,
                 },
             })
         } else {
             dispatch({
-                type: 'UNFOLLOW_PLATFORM',
+                type: 'UNFOLLOW',
                 payload: id,
             })
         }
@@ -38,7 +42,7 @@ const StoreCard = ({store}) => {
                 backgroundImage: `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${image_background})`,
             }}
             data-id={id}
-            ref={storeCardRef}
+            ref={cardRef}
         >
             <div className={styled.cardInfo}>
                 {image && (
@@ -88,4 +92,4 @@ const StoreCard = ({store}) => {
     );
 };
 
-export default StoreCard;
+export default Card;

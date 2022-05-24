@@ -46,3 +46,15 @@
     color: var(--highRatingColor);
     border: 1px solid var(--highRatingBorder);
 }
+
+.mainHeading {
+    font-size: 72px;
+    line-height: 74px;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 24px;
+}

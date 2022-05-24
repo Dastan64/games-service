@@ -1,3 +1,4 @@
 .aside {
+    flex-shrink: 0;
     flex-basis: 200px;
 }

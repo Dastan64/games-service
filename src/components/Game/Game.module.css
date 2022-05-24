@@ -1,9 +1,5 @@
-.container {
-    color: var(--white);
-}
-
 .gameSection {
-    flex-basis: 60%;
+    color: var(--white);
 }
 
 .rightSection {
