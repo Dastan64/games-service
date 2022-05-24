@@ -1,4 +1,4 @@
-import styles from './App.module.css';
+import styled from './App.module.css';
 
 //Hooks and core
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,7 +35,7 @@ const App = () => {
     const games = useSelector((state) => state.games.games);
 
     return (
-        <div className={styles.app}>
+        <div className={styled.app}>
             <Routes>
                 <Route path="/" element={<SharedLayout/>}>
                     <Route index element={<Home games={games}/>}/>

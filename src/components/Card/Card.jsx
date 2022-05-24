@@ -2,38 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Styles
-import styled from '../PlatformCard/PlatformCard.module.css';
+import styled from './Card.module.css';
 
 //Hooks
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-const Card = ({dataObj, data}) => {
-    const [isFollowed, setIsFollowed] = useState(false);
-    const cardRef = useRef(null);
-    const dispatch = useDispatch();
+const Card = ({dataObj}) => {
     const {slug, id, image, name, year_start, image_background, games_count, games} = dataObj ?? {};
-
-    function handleFollow() {
-        const id = +cardRef.current.dataset.id;
-        const target = data.find(platform => platform.id === id);
-        if (!isFollowed) {
-            dispatch({
-                type: 'FOLLOW',
-                payload: {
-                    ...target,
-                    isSolid: true,
-                    route: `/games/${target.slug}`,
-                },
-            })
-        } else {
-            dispatch({
-                type: 'UNFOLLOW',
-                payload: id,
-            })
-        }
-        setIsFollowed(!isFollowed);
-    }
 
     return (
         <article
@@ -42,7 +18,7 @@ const Card = ({dataObj, data}) => {
                 backgroundImage: `linear-gradient(rgba(32, 32, 32, 0.5), rgb(32, 32, 32) 70%), url(${image_background})`,
             }}
             data-id={id}
-            ref={cardRef}
+            // ref={cardRef}
         >
             <div className={styled.cardInfo}>
                 {image && (
