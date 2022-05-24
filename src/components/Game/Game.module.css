@@ -2,12 +2,31 @@
     color: var(--white);
 }
 
-.rightSection {
-    flex-basis: 40%;
-}
-
 .gameSection section {
     margin: 20px 0;
+}
+
+.gameBreadcrumbs {
+    margin-bottom: 32px;
+    list-style: none;
+    color: var(--breadcrumbColor);
+}
+
+.gameBreadcrumbsItem {
+    display: inline-block;
+    font-size: 0.625rem;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
+
+.gameBreadcrumbItemLink {
+    color: var(--breadcrumbColor);
+}
+
+.gameBreadcrumbsItem:not(:last-child)::after {
+    content: "/";
+    display: inline-block;
+    margin: 0 4px;
 }
 
 .gameTopContainer {

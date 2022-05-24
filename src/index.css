@@ -15,6 +15,7 @@
     --searchInputShortcutBorder: hsla(0, 0%, 100%, 0.3);
     --searchInputColor: hsla(0, 0%, 100%, .6);
     --searchInputShortcutColor: hsla(0, 0%, 100%, 0.5);
+    --breadcrumbColor: hsla(0, 0%, 100%, .4);
     --green: green;
 }
 

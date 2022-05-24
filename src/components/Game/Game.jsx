@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-//Styles
-import styles from './Game.module.css';
-import reusableStyles from '../../reusable/reusable.module.css';
+//styled
+import styled from './Game.module.css';
+import reusablestyles from '../../reusable/reusable.module.css';
 import clsx from 'clsx';
 
 //Utils
@@ -49,6 +49,7 @@ const Game = () => {
     let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;
 
     const {
+        playtime,
         released,
         name,
         description,
@@ -71,15 +72,15 @@ const Game = () => {
         systemRequirements = platforms.filter(platform => Object.keys(platform.requirements).length > 0).map((platform) => {
             return (
                 <div key={platform.platform.id}>
-                    <h2 className={styles.gameRequirementsHeading}>
+                    <h2 className={styled.gameRequirementsHeading}>
                         System requirements for {platform.platform.name}
                     </h2>
                     {platform.requirements && (
                         <>
-                            <p className={styles.gameRequirementsText}>
+                            <p className={styled.gameRequirementsText}>
                                 {platform.requirements.minimum}
                             </p>
-                            <p className={styles.gameRequirementsText}>
+                            <p className={styled.gameRequirementsText}>
                                 {platform.requirements.recommended}
                             </p>
                         </>
@@ -100,7 +101,7 @@ const Game = () => {
     }
     if (tags?.length > 0) {
         tagsList = tags.map((tag, index) => (
-            <li className={reusableStyles.listItem} key={tag.id}>
+            <li className={reusablestyles.listItem} key={tag.id}>
                 {(index ? ', ' : '') + tag.name}
             </li>
         ));
@@ -108,9 +109,9 @@ const Game = () => {
 
     //Conditional classes
     const ratingNumberStyle = clsx({
-        [reusableStyles.lowRating]: metacritic < 50,
-        [reusableStyles.midRating]: metacritic >= 50 && metacritic <= 74,
-        [reusableStyles.highRating]: metacritic >= 75 && metacritic <= 100,
+        [reusablestyles.lowRating]: metacritic < 50,
+        [reusablestyles.midRating]: metacritic >= 50 && metacritic <= 74,
+        [reusablestyles.highRating]: metacritic >= 75 && metacritic <= 100,
     });
 
     //Retrieving state
@@ -123,61 +124,68 @@ const Game = () => {
     const personDevelopers = useSelector((state) => state.game.developers);
 
     return (
-        <section className={styles.gameSection}>
-            <div className={styles.gameTopContainer}>
-                <div className={styles.gameReleaseDate}>
+        <section className={styled.gameSection}>
+            <ul className={styled.gameBreadcrumbs}>
+                <li className={styled.gameBreadcrumbsItem}><Link className={styled.gameBreadcrumbItemLink}
+                                                                 to={'/'}>Home</Link></li>
+                <li className={styled.gameBreadcrumbsItem}><Link className={styled.gameBreadcrumbItemLink}
+                                                                 to={'/games'}>Games</Link></li>
+                <li className={styled.gameBreadcrumbsItem}>{name}</li>
+            </ul>
+            <div className={styled.gameTopContainer}>
+                <div className={styled.gameReleaseDate}>
                     <p>{formatDate(released)}</p>
                 </div>
-                <div className={styles.gamePlaytime}>
-                    <p>AVERAGE PLAYTIME: 11 HOURS</p>
+                <div className={styled.gamePlaytime}>
+                    <p>AVERAGE PLAYTIME: {playtime} hours</p>
                 </div>
             </div>
-            <h1 className={styles.gameTitle}>{name}</h1>
+            <h1 className={styled.gameTitle}>{name}</h1>
             <section className="about">
                 <h2>About</h2>
                 <div
-                    className={styles.gameDescriptionContainer}
+                    className={styled.gameDescriptionContainer}
                     dangerouslySetInnerHTML={{__html: description}}
                 ></div>
             </section>
             <section className="info">
-                <div className={styles.infoGrid}>
+                <div className={styled.infoGrid}>
                     <div className="info__grid-item">
-                        <h4 className={styles.infoCaption}>Platforms</h4>
-                        <p className={styles.infoText}>{platformsList}</p>
+                        <h4 className={styled.infoCaption}>Platforms</h4>
+                        <p className={styled.infoText}>{platformsList}</p>
                     </div>
                     {metacritic && (
                         <div className="info__grid-item">
-                            <h4 className={styles.infoCaption}>Metascore</h4>
-                            <p className={`${styles.infoRating} ${ratingNumberStyle}`}>
+                            <h4 className={styled.infoCaption}>Metascore</h4>
+                            <p className={`${styled.infoRating} ${ratingNumberStyle}`}>
                                 {metacritic}
                             </p>
                         </div>
                     )}
                     <div className="info__grid-item">
-                        <h4 className={styles.infoCaption}>Genre</h4>
-                        <p className={styles.infoText}>{genresList}</p>
+                        <h4 className={styled.infoCaption}>Genre</h4>
+                        <p className={styled.infoText}>{genresList}</p>
                     </div>
                     <div className="info__grid-item">
-                        <h4 className={styles.infoCaption}>Release Date</h4>
-                        <p className={styles.infoText}>{formatDate(released)}</p>
+                        <h4 className={styled.infoCaption}>Release Date</h4>
+                        <p className={styled.infoText}>{formatDate(released)}</p>
                     </div>
                     <div className="info__grid-item">
-                        <h4 className={styles.infoCaption}>Developer</h4>
-                        <p className={styles.infoText}>{developersList}</p>
+                        <h4 className={styled.infoCaption}>Developer</h4>
+                        <p className={styled.infoText}>{developersList}</p>
                     </div>
                     <div className="info__grid-item">
-                        <h4 className={styles.infoCaption}>Publisher</h4>
-                        <p className={styles.infoText}>{publishersList}</p>
+                        <h4 className={styled.infoCaption}>Publisher</h4>
+                        <p className={styled.infoText}>{publishersList}</p>
                     </div>
                     <div className="info__grid-item">
-                        <h4 className={styles.infoCaption}>Age rating</h4>
-                        <p className={styles.infoText}>The Coalition</p>
+                        <h4 className={styled.infoCaption}>Age rating</h4>
+                        <p className={styled.infoText}>The Coalition</p>
                     </div>
                 </div>
             </section>
             <div
-                className={styles.gameBackgroundImageContainer}
+                className={styled.gameBackgroundImageContainer}
                 style={{
                     backgroundImage: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)), url(${background_image})`,
                     backgroundSize: 'cover',
@@ -186,10 +194,10 @@ const Game = () => {
             {gamesFromSameSeries.length > 0 && (
                 <section>
                     <h2>Other games in the series:</h2>
-                    <ul className={reusableStyles.listMarkered}>
+                    <ul className={reusablestyles.listMarkered}>
                         {gamesFromSameSeries.map((game) => (
                             <li key={game.id}>
-                                <Link to={`/game/${game.slug}`} className={reusableStyles.link}>
+                                <Link to={`/game/${game.slug}`} className={reusablestyles.link}>
                                     {game.name}
                                 </Link>
                             </li>
@@ -207,11 +215,11 @@ const Game = () => {
             )}
             <section>
                 <h2>Tags:</h2>
-                <ul className={reusableStyles.list}>{tagsList}</ul>
+                <ul className={reusablestyles.list}>{tagsList}</ul>
             </section>
             {achievements.length > 0 && (
-                <section className={styles.gameAchievements}>
-                    <div className={styles.gameAchievementsTop}>
+                <section className={styled.gameAchievements}>
+                    <div className={styled.gameAchievementsTop}>
                         <h2>{name} achievements:</h2>
                         <p>{achievements_count} achievements</p>
                     </div>
@@ -220,7 +228,7 @@ const Game = () => {
             )}
             <section>
                 <h2>Website:</h2>
-                <a className={styles.gameWebsiteLink} href={website}>
+                <a className={styled.gameWebsiteLink} href={website}>
                     {website}
                 </a>
             </section>
@@ -231,7 +239,7 @@ const Game = () => {
                     <DevelopersList developers={personDevelopers}/>
                 </section>
             )}
-            {screenshots.length > 0 && <section className={styles.rightSection}>
+            {screenshots.length > 0 && <section className={styled.rightSection}>
                 <h2>{name} screenshots:</h2>
                 <Screenshots screenshots={screenshots}/>
             </section>}
