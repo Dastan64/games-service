@@ -1,5 +1,15 @@
 export const LOAD_GAMES = 'LOAD_GAMES';
+export const LOAD_GAMES_INFO = 'LOAD_GAMES_INFO';
 export const SEARCH_GAMES = 'SEARCH_GAMES';
+
+export const getGamesCount = () => {
+    return (dispatch) => {
+        fetch(`${process.env.REACT_APP_BASE_URL}games?key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => dispatch({
+            type: LOAD_GAMES_INFO,
+            payload: data.count
+        })).catch(error => console.error(error))
+    }
+}
 
 export const getGames = (platformId = '1,4,18,187', genreId = '2,3,4,5') => {
     return (dispatch) => {

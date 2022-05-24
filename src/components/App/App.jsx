@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Actions
-import { getGames } from '../../store/actions/games';
+import { getGames, getGamesCount } from '../../store/actions/games';
 import { getGenres } from '../../store/actions/genres';
 import { getPlatforms } from '../../store/actions/platforms';
 import { getStores } from '../../store/actions/stores';
@@ -26,6 +26,7 @@ const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getGamesCount())
         dispatch(getGames())
         dispatch(getPlatforms())
         dispatch(getStores())

@@ -12,6 +12,9 @@
     --highRatingColor: #6dc849;
     --highRatingBorder: rgba(109, 200, 73, 0.4);
     --addedBg: hsla(0, 0%, 100%, 0.1);
+    --searchInputShortcutBorder: hsla(0, 0%, 100%, 0.3);
+    --searchInputColor: hsla(0, 0%, 100%, .6);
+    --searchInputShortcutColor: hsla(0, 0%, 100%, 0.5);
     --green: green;
 }
 
