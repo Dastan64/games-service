@@ -21,6 +21,7 @@ import PlatformDetail from '../../pages/PlatformDetail/PlatformDetail';
 import GenreDetail from '../../pages/GenreDetail/GenreDetail';
 import Stores from '../../pages/Stores/Stores';
 import Home from '../../pages/Home/Home';
+import WishedGames from '../../pages/WishedGames/WishedGames';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const App = () => {
                     <Route path="game/:slug" element={<Game/>}/>
                     <Route path="games" element={<GamesList games={games}/>}/>
                     <Route path="games/liked" element={<LikedGames/>}/>
+                    <Route path="games/wishlist" element={<WishedGames/>}/>
                     <Route path="games/:platformSlug" element={<PlatformDetail/>}/>
                     <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
                     <Route path="platforms" element={<Platforms/>}/>

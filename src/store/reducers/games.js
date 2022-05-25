@@ -4,6 +4,7 @@ const initialState = {
     games: [],
     gamesTotalCount: 0,
     likedGamesIds: [],
+    wishlistGamesIds: [],
 }
 
 export const gamesReducer = (state = initialState, action) => {
@@ -14,8 +15,14 @@ export const gamesReducer = (state = initialState, action) => {
             return {...state, games: action.payload}
         case LOAD_GAMES_INFO:
             return {...state, gamesTotalCount: action.payload}
-        case 'ADD_GAME':
+        case 'LIKE_GAME':
             return {...state, likedGamesIds: [...state.likedGamesIds, action.payload]}
+        case 'UNLIKE_GAME':
+            return {...state, likedGamesIds: state.likedGamesIds.filter(id => id !== action.payload)}
+        case 'WISH_GAME':
+            return {...state, wishlistGamesIds: [...state.wishlistGamesIds, action.payload]}
+        case 'UNWISH_GAME':
+            return {...state, wishlistGamesIds: state.wishlistGamesIds.filter(id => id !== action.payload)}
         default:
             return state;
     }
