@@ -6,13 +6,13 @@ import { mockData } from '../../static';
 import { Link } from 'react-router-dom';
 
 const Aside = () => {
-    const followingPlatforms = useSelector(state => state.platforms.followedPlatforms);
+    const following = useSelector(state => state.following.following);
     return (
         <aside className={styled.aside}>
             <div>
                 <Link to={'/'}><h3 className={styled.navSectionTitle}>Home</h3></Link>
             </div>
-            <NavSection title="Following" listItems={followingPlatforms}/>
+            <NavSection title="Following" listItems={following}/>
             <NavSection title="You" listItems={mockData.personal}/>
             <NavSection title="Browse" listItems={mockData.browse}/>
             <NavSection title="Platforms" listItems={mockData.platforms}/>

@@ -5,19 +5,14 @@ import { useSelector } from 'react-redux';
 import reusableStyles from '../../reusable/reusable.module.css';
 import styled from './Platforms.module.css';
 
-import PlatformCard from '../../components/PlatformCard/PlatformCard';
-import Loader from '../../components/Loader/Loader';
+import CardsList from '../../components/CardsList/CardsList';
 
 const Platforms = () => {
     const platforms = useSelector(state => state.platforms.platforms);
     return (
         <section>
             <h1 className={`${styled.heading} ${reusableStyles.mainHeading}`}>Platforms</h1>
-            {platforms.length > 0 ?
-                <ul className={reusableStyles.grid}>
-                    {platforms.map(platform => <PlatformCard platform={platform} key={platform.id}/>)}
-                </ul>
-                : <Loader/>}
+            {platforms.length > 0 && <CardsList data={platforms} route={'/games'} type={'platforms'}/>}
         </section>
     );
 };

@@ -1,3 +1,4 @@
+//Styles
 import styled from './App.module.css';
 
 //Hooks and core
@@ -15,6 +16,8 @@ import { getStores } from '../../store/actions/stores';
 import GamesList from '../GamesList/GamesList';
 import Game from '../Game/Game';
 import SharedLayout from '../SharedLayout/SharedLayout';
+
+//Pages
 import LikedGames from '../../pages/LikedGames/LikedGames';
 import Platforms from '../../pages/Platforms/Platforms';
 import PlatformDetail from '../../pages/PlatformDetail/PlatformDetail';
@@ -41,11 +44,11 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<SharedLayout/>}>
                     <Route index element={<Home games={games}/>}/>
-                    <Route path="game/:slug" element={<Game/>}/>
                     <Route path="games" element={<GamesList games={games}/>}/>
                     <Route path="games/liked" element={<LikedGames/>}/>
                     <Route path="games/wishlist" element={<WishedGames/>}/>
                     <Route path="games/:platformSlug" element={<PlatformDetail/>}/>
+                    <Route path="game/:slug" element={<Game/>}/>
                     <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
                     <Route path="platforms" element={<Platforms/>}/>
                     <Route path="stores" element={<Stores/>}/>
