@@ -25,6 +25,7 @@ import GenreDetail from '../../pages/GenreDetail/GenreDetail';
 import Stores from '../../pages/Stores/Stores';
 import Home from '../../pages/Home/Home';
 import WishedGames from '../../pages/WishedGames/WishedGames';
+import Genres from '../../pages/Genres/Genres';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const App = () => {
                     <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
                     <Route path="platforms" element={<Platforms/>}/>
                     <Route path="stores" element={<Stores/>}/>
+                    <Route path="genres" element={<Genres/>}/>
                 </Route>
             </Routes>
         </div>
