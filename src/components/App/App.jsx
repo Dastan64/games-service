@@ -11,6 +11,7 @@ import { getGames, getGamesCount } from '../../store/actions/games';
 import { getGenres } from '../../store/actions/genres';
 import { getPlatforms } from '../../store/actions/platforms';
 import { getStores } from '../../store/actions/stores';
+import { getTags } from '../../store/actions/tags';
 
 //Components
 import GamesList from '../GamesList/GamesList';
@@ -26,6 +27,7 @@ import Stores from '../../pages/Stores/Stores';
 import Home from '../../pages/Home/Home';
 import WishedGames from '../../pages/WishedGames/WishedGames';
 import Genres from '../../pages/Genres/Genres';
+import Tags from '../../pages/Tags/Tags';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -36,6 +38,7 @@ const App = () => {
         dispatch(getPlatforms())
         dispatch(getStores())
         dispatch(getGenres())
+        dispatch(getTags())
     }, [dispatch]);
 
     const games = useSelector((state) => state.games.games);
@@ -54,6 +57,7 @@ const App = () => {
                     <Route path="platforms" element={<Platforms/>}/>
                     <Route path="stores" element={<Stores/>}/>
                     <Route path="genres" element={<Genres/>}/>
+                    <Route path="tags" element={<Tags/>}/>
                 </Route>
             </Routes>
         </div>
