@@ -1,5 +1,5 @@
 //Hooks
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ import {
     getGameDevelopers,
     getDLCs,
     getGamesFromSameSeries,
-    getScreenshots,
+    getScreenshots, getGameDetails,
 } from '../../store/actions/game';
 
 //Components
@@ -27,18 +27,11 @@ import DevelopersList from '../DevelopersList/DevelopersList';
 import AchievementsList from '../AchievementsList/AchievementsList';
 
 const Game = () => {
-    const [game, setGame] = useState({});
     const {slug} = useParams();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch(
-            `${process.env.REACT_APP_BASE_URL}games/${slug}?key=${process.env.REACT_APP_API_KEY}`
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                setGame(data);
-            });
+        dispatch(getGameDetails(slug))
         dispatch(getGamesFromSameSeries(slug));
         dispatch(getAchievements(slug));
         dispatch(getDLCs(slug));
@@ -47,6 +40,7 @@ const Game = () => {
     }, [slug, dispatch]);
 
     let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;
+    const game = useSelector(state => state.game.game);
 
     const {
         playtime,
@@ -62,13 +56,10 @@ const Game = () => {
         tags,
         achievements_count,
         website,
-    } = game;
+    } = game ?? {};
 
     if (platforms?.length > 0) {
-        platformsList = platforms
-            .map((platform) => platform.platform.name)
-            .join(', ');
-
+        platformsList = platforms.map((platform) => platform.platform.name).join(', ');
         systemRequirements = platforms.filter(platform => Object.keys(platform.requirements).length > 0).map((platform) => {
             return (
                 <div key={platform.platform.id}>

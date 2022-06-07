@@ -3,10 +3,11 @@ import {
     GET_GAME_DEVELOPERS,
     GET_DLCS,
     GET_GAMES_FROM_SERIES,
-    GET_SCREENSHOTS
+    GET_SCREENSHOTS, GET_GAME_DETAILS
 } from '../actions/game';
 
 const initialState = {
+    game: {},
     gameAchievements: [],
     gamesFromSameSeries: [],
     dlcs: [],
@@ -16,6 +17,8 @@ const initialState = {
 
 export const singleGameReducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_GAME_DETAILS:
+            return {...state, game: action.payload}
         case GET_ACHIEVEMENTS:
             return {...state, gameAchievements: action.payload}
         case GET_GAMES_FROM_SERIES:

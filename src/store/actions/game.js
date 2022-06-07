@@ -1,8 +1,22 @@
+export const GET_GAME_DETAILS = 'GET_GAME_DETAILS';
 export const GET_ACHIEVEMENTS = 'GET_ACHIEVEMENTS';
 export const GET_GAMES_FROM_SERIES = 'GET_GAMES_FROM_SERIES';
 export const GET_DLCS = 'GET_DLCS';
 export const GET_SCREENSHOTS = 'GET_SCREENSHOTS';
 export const GET_GAME_DEVELOPERS = 'GET_GAME_DEVELOPERS';
+
+export const getGameDetails = (slug) => {
+    return (dispatch) => {
+        fetch(
+            `${process.env.REACT_APP_BASE_URL}games/${slug}?key=${process.env.REACT_APP_API_KEY}`
+        )
+            .then((response) => response.json()).then(data =>
+            dispatch({
+                type: GET_GAME_DETAILS,
+                payload: data
+            })).catch(error => console.error(error))
+    }
+}
 
 export const getAchievements = (slug) => {
     return (dispatch) => {
