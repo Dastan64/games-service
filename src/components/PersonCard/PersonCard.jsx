@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from './DeveloperCard.module.css';
+import styled from './PersonCard.module.css';
 import { Link } from 'react-router-dom';
 
-const DeveloperCard = ({developer}) => {
+const PersonCard = ({developer}) => {
     const {name, image, image_background, positions, games_count, games} = developer ?? {};
 
     return (
@@ -21,7 +21,7 @@ const DeveloperCard = ({developer}) => {
                         />
                     </div>
                 )}
-                <Link className={styled.cardLink} to={'/'}>
+                <Link className={styled.cardLink} to={`/creators/${name}`}>
                     <h3 className={styled.cardName}>{name}</h3>
                 </Link>
                 {positions.length > 0 &&
@@ -57,4 +57,4 @@ const DeveloperCard = ({developer}) => {
     );
 };
 
-export default DeveloperCard;
+export default PersonCard;

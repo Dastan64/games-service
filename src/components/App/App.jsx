@@ -28,6 +28,8 @@ import Home from '../../pages/Home/Home';
 import WishedGames from '../../pages/WishedGames/WishedGames';
 import Genres from '../../pages/Genres/Genres';
 import Tags from '../../pages/Tags/Tags';
+import Developers from '../../pages/Developers/Developers';
+import { getDevelopers } from '../../store/actions/developers';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -39,6 +41,7 @@ const App = () => {
         dispatch(getStores())
         dispatch(getGenres())
         dispatch(getTags())
+        dispatch(getDevelopers())
     }, [dispatch]);
 
     const games = useSelector((state) => state.games.games);
@@ -58,6 +61,7 @@ const App = () => {
                     <Route path="stores" element={<Stores/>}/>
                     <Route path="genres" element={<Genres/>}/>
                     <Route path="tags" element={<Tags/>}/>
+                    <Route path="developers" element={<Developers/>}/>
                 </Route>
             </Routes>
         </div>

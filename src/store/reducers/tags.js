@@ -1,7 +1,7 @@
 import { GET_TAGS } from '../actions/tags';
 
 const initialState = {
-    genres: [],
+    tags: [],
 }
 
 export const tagsReducer = (state = initialState, action) => {

@@ -8,7 +8,7 @@ import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import DeveloperCard from '../DeveloperCard/DeveloperCard';
+import PersonCard from '../PersonCard/PersonCard';
 
 
 const DevelopersList = ({developers}) => {
@@ -40,7 +40,7 @@ const DevelopersList = ({developers}) => {
                     developers.map((developer) => {
                         return (
                             <SwiperSlide key={developer.id}>
-                                <DeveloperCard developer={developer}/>
+                                <PersonCard developer={developer}/>
                             </SwiperSlide>
                         );
                     })}

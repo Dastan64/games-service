@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-//styled
+//Styles
 import styled from './Game.module.css';
 import reusablestyles from '../../reusable/reusable.module.css';
 import clsx from 'clsx';
@@ -14,7 +14,7 @@ import { formatDate } from '../../utils/formatDate';
 //Actions
 import {
     getAchievements,
-    getDevelopers,
+    getGameDevelopers,
     getDLCs,
     getGamesFromSameSeries,
     getScreenshots,
@@ -43,7 +43,7 @@ const Game = () => {
         dispatch(getAchievements(slug));
         dispatch(getDLCs(slug));
         dispatch(getScreenshots(slug));
-        dispatch(getDevelopers(slug));
+        dispatch(getGameDevelopers(slug));
     }, [slug, dispatch]);
 
     let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;

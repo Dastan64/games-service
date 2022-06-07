@@ -2,7 +2,7 @@ export const GET_ACHIEVEMENTS = 'GET_ACHIEVEMENTS';
 export const GET_GAMES_FROM_SERIES = 'GET_GAMES_FROM_SERIES';
 export const GET_DLCS = 'GET_DLCS';
 export const GET_SCREENSHOTS = 'GET_SCREENSHOTS';
-export const GET_DEVELOPERS = 'GET_DEVELOPERS';
+export const GET_GAME_DEVELOPERS = 'GET_GAME_DEVELOPERS';
 
 export const getAchievements = (slug) => {
     return (dispatch) => {
@@ -40,10 +40,10 @@ export const getScreenshots = (slug) => {
     }
 }
 
-export const getDevelopers = (slug) => {
+export const getGameDevelopers = (slug) => {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_BASE_URL}games/${slug}/development-team?key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => dispatch({
-            type: GET_DEVELOPERS,
+            type: GET_GAME_DEVELOPERS,
             payload: data.results,
         })).catch(error => console.error(error))
     }

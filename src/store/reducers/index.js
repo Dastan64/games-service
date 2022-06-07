@@ -8,6 +8,7 @@ import { genresReducer } from './genres';
 import { storesReducer } from './stores';
 import { followingReducer } from './following';
 import { tagsReducer } from './tags';
+import { developersReducer } from './developers';
 
 export const rootReducer = combineReducers({
     games: gamesReducer,
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
     platforms: platformsReducer,
     genres: genresReducer,
     stores: storesReducer,
+    developers: developersReducer,
     tags: tagsReducer,
     platformDetails: platformDetailsReducer,
     genreDetails: genreDetailsReducer,
