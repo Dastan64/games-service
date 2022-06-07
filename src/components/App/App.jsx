@@ -12,6 +12,9 @@ import { getGenres } from '../../store/actions/genres';
 import { getPlatforms } from '../../store/actions/platforms';
 import { getStores } from '../../store/actions/stores';
 import { getTags } from '../../store/actions/tags';
+import { getDevelopers } from '../../store/actions/developers';
+import { getPublishers } from '../../store/actions/publishers';
+import { getCreators } from '../../store/actions/creators';
 
 //Components
 import GamesList from '../GamesList/GamesList';
@@ -29,9 +32,8 @@ import WishedGames from '../../pages/WishedGames/WishedGames';
 import Genres from '../../pages/Genres/Genres';
 import Tags from '../../pages/Tags/Tags';
 import Developers from '../../pages/Developers/Developers';
-import { getDevelopers } from '../../store/actions/developers';
-import { getPublishers } from '../../store/actions/publishers';
 import Publishers from '../../pages/Publishers/Publishers';
+import Creators from '../../pages/Creators/Creators';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -45,6 +47,7 @@ const App = () => {
         dispatch(getTags())
         dispatch(getDevelopers())
         dispatch(getPublishers())
+        dispatch(getCreators())
     }, [dispatch]);
 
     const games = useSelector((state) => state.games.games);
@@ -66,6 +69,7 @@ const App = () => {
                     <Route path="tags" element={<Tags/>}/>
                     <Route path="developers" element={<Developers/>}/>
                     <Route path="publishers" element={<Publishers/>}/>
+                    <Route path="creators" element={<Creators/>}/>
                 </Route>
             </Routes>
         </div>

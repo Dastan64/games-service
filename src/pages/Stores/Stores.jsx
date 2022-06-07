@@ -10,7 +10,7 @@ const Stores = () => {
     const stores = useSelector(state => state.stores.stores);
     return (
         <section>
-            <h1 className={`${reusableStyles.pageHeading} ${reusableStyles.heading}`}>Stores</h1>
+            <h1 className={`${reusableStyles.mainHeading} ${reusableStyles.pageHeading}`}>Stores</h1>
             {stores.length > 0 && <CardsList data={stores} route={'/stores'} type={'store'}/>}
         </section>
     );

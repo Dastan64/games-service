@@ -24,12 +24,14 @@ const PersonCard = ({developer}) => {
                 <Link className={styled.cardLink} to={`/creators/${name}`}>
                     <h3 className={styled.cardName}>{name}</h3>
                 </Link>
-                {positions.length > 0 &&
-                    positions.map((position) => (
-                        <p key={position.id} className={styled.cardRole}>
-                            {position.name.charAt(0).toUpperCase() + position.name.slice(1)}
-                        </p>
-                    ))}
+                <div className={styled.cardPositions}>
+                    {positions.length > 0 &&
+                        positions.map((position, index) => (
+                            <span key={position.id} className={styled.cardRole}>
+                                {(index ? ', ' : '') + position.name.charAt(0).toUpperCase() + position.name.slice(1)}
+                            </span>
+                        ))}
+                </div>
             </div>
             <div className={styled.cardBottom}>
                 <div className={styled.cardTopLine}>
