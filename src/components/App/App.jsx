@@ -30,6 +30,8 @@ import Genres from '../../pages/Genres/Genres';
 import Tags from '../../pages/Tags/Tags';
 import Developers from '../../pages/Developers/Developers';
 import { getDevelopers } from '../../store/actions/developers';
+import { getPublishers } from '../../store/actions/publishers';
+import Publishers from '../../pages/Publishers/Publishers';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -42,6 +44,7 @@ const App = () => {
         dispatch(getGenres())
         dispatch(getTags())
         dispatch(getDevelopers())
+        dispatch(getPublishers())
     }, [dispatch]);
 
     const games = useSelector((state) => state.games.games);
@@ -62,6 +65,7 @@ const App = () => {
                     <Route path="genres" element={<Genres/>}/>
                     <Route path="tags" element={<Tags/>}/>
                     <Route path="developers" element={<Developers/>}/>
+                    <Route path="publishers" element={<Publishers/>}/>
                 </Route>
             </Routes>
         </div>
