@@ -52,7 +52,7 @@ const Card = ({obj, data, route, type}) => {
                         />
                     </div>
                 )}
-                <Link className={styled.cardLink} to={`/games/${slug}`}>
+                <Link className={styled.cardLink} to={`${route}/${slug}`}>
                     <h3 className={styled.cardName}>{name}</h3>
                 </Link>
                 {year_start && <p className={styled.yearStart}>

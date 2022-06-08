@@ -62,10 +62,10 @@ const App = () => {
                     <Route path="games/wishlist" element={<WishedGames/>}/>
                     <Route path="games/:platformSlug" element={<PlatformDetail/>}/>
                     <Route path="game/:slug" element={<Game/>}/>
-                    <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
                     <Route path="platforms" element={<Platforms/>}/>
                     <Route path="stores" element={<Stores/>}/>
                     <Route path="genres" element={<Genres/>}/>
+                    <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
                     <Route path="tags" element={<Tags/>}/>
                     <Route path="developers" element={<Developers/>}/>
                     <Route path="publishers" element={<Publishers/>}/>

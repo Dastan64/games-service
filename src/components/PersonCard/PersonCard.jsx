@@ -3,7 +3,7 @@ import styled from './PersonCard.module.css';
 import { Link } from 'react-router-dom';
 
 const PersonCard = ({developer}) => {
-    const {name, image, image_background, positions, games_count, games} = developer ?? {};
+    const {name, image, slug, image_background, positions, games_count, games} = developer ?? {};
 
     return (
         <article className={styled.card} style={{
@@ -21,7 +21,7 @@ const PersonCard = ({developer}) => {
                         />
                     </div>
                 )}
-                <Link className={styled.cardLink} to={`/creators/${name}`}>
+                <Link className={styled.cardLink} to={`/creators/${slug}`}>
                     <h3 className={styled.cardName}>{name}</h3>
                 </Link>
                 <div className={styled.cardPositions}>
@@ -40,7 +40,7 @@ const PersonCard = ({developer}) => {
                 </div>
                 <div className={styled.cardKnown}>
                     {games.length > 0 &&
-                        games.map((game) => {
+                        games.slice(0, 3).map((game) => {
                             return (
                                 <div className={styled.cardLine} key={game.id}>
                                     <Link
