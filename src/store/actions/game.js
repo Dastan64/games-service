@@ -4,6 +4,7 @@ export const GET_GAMES_FROM_SERIES = 'GET_GAMES_FROM_SERIES';
 export const GET_DLCS = 'GET_DLCS';
 export const GET_SCREENSHOTS = 'GET_SCREENSHOTS';
 export const GET_GAME_DEVELOPERS = 'GET_GAME_DEVELOPERS';
+export const GET_POSTS = 'GET_POSTS';
 
 export const getGameDetails = (slug) => {
     return (dispatch) => {
@@ -63,6 +64,13 @@ export const getGameDevelopers = (slug) => {
     }
 }
 
-
+export const getPosts = (slug) => {
+    return (dispatch) => {
+        fetch(`${process.env.REACT_APP_BASE_URL}games/${slug}/reddit?key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => dispatch({
+            type: GET_POSTS,
+            payload: data.results
+        })).catch(error => console.error(error))
+    }
+}
 
 

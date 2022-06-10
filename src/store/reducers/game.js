@@ -3,7 +3,7 @@ import {
     GET_GAME_DEVELOPERS,
     GET_DLCS,
     GET_GAMES_FROM_SERIES,
-    GET_SCREENSHOTS, GET_GAME_DETAILS
+    GET_SCREENSHOTS, GET_GAME_DETAILS, GET_POSTS
 } from '../actions/game';
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
     gamesFromSameSeries: [],
     dlcs: [],
     screenshots: [],
+    posts: [],
     developers: [],
 }
 
@@ -21,6 +22,8 @@ export const singleGameReducer = (state = initialState, action) => {
             return {...state, game: action.payload}
         case GET_ACHIEVEMENTS:
             return {...state, gameAchievements: action.payload}
+        case GET_POSTS:
+            return {...state, posts: action.payload}
         case GET_GAMES_FROM_SERIES:
             return {...state, gamesFromSameSeries: action.payload}
         case GET_DLCS:

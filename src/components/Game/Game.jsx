@@ -8,6 +8,8 @@ import styled from './Game.module.css';
 import reusablestyles from '../../reusable/reusable.module.css';
 import clsx from 'clsx';
 
+import reddit from '../../assets/images/reddit.png';
+
 //Utils
 import { formatDate } from '../../utils/formatDate';
 
@@ -17,7 +19,7 @@ import {
     getGameDevelopers,
     getDLCs,
     getGamesFromSameSeries,
-    getScreenshots, getGameDetails,
+    getScreenshots, getGameDetails, getPosts
 } from '../../store/actions/game';
 
 //Components
@@ -25,21 +27,24 @@ import DlcList from '../DlcList/DlcList';
 import Screenshots from '../Screenshots/Screenshots';
 import DevelopersList from '../DevelopersList/DevelopersList';
 import AchievementsList from '../AchievementsList/AchievementsList';
+import PostsList from '../PostsList/PostsList';
 
 const Game = () => {
     const {slug} = useParams();
     const dispatch = useDispatch();
 
+    let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;
+
     useEffect(() => {
         dispatch(getGameDetails(slug))
         dispatch(getGamesFromSameSeries(slug));
         dispatch(getAchievements(slug));
+        dispatch(getPosts(slug));
         dispatch(getDLCs(slug));
         dispatch(getScreenshots(slug));
         dispatch(getGameDevelopers(slug));
     }, [slug, dispatch]);
 
-    let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;
     const game = useSelector(state => state.game.game);
 
     const {
@@ -57,7 +62,6 @@ const Game = () => {
         achievements_count,
         website,
     } = game ?? {};
-
     if (platforms?.length > 0) {
         platformsList = platforms.map((platform) => platform.platform.name).join(', ');
         systemRequirements = platforms.filter(platform => Object.keys(platform.requirements).length > 0).map((platform) => {
@@ -113,6 +117,7 @@ const Game = () => {
     const dlcs = useSelector((state) => state.game.dlcs);
     const screenshots = useSelector((state) => state.game.screenshots);
     const personDevelopers = useSelector((state) => state.game.developers);
+    const posts = useSelector((state) => state.game.posts);
 
     return (
         <section className={styled.gameSection}>
@@ -133,7 +138,7 @@ const Game = () => {
             </div>
             <h1 className={styled.gameTitle}>{name}</h1>
             <section className="about">
-                <h2>About</h2>
+                <h2 className={styled.gameSectionHeading}>About</h2>
                 <div
                     className={styled.gameDescriptionContainer}
                     dangerouslySetInnerHTML={{__html: description}}
@@ -184,7 +189,7 @@ const Game = () => {
             ></div>
             {gamesFromSameSeries.length > 0 && (
                 <section>
-                    <h2>Other games in the series:</h2>
+                    <h2 className={styled.gameSectionHeading}>Other games in the series:</h2>
                     <ul className={reusablestyles.listMarkered}>
                         {gamesFromSameSeries.map((game) => (
                             <li key={game.id}>
@@ -199,26 +204,40 @@ const Game = () => {
             {dlcs.length > 0 && (
                 <>
                     <section>
-                        <h2>DLC's and editions:</h2>
+                        <h2 className={styled.gameSectionHeading}>DLC's and editions:</h2>
                         <DlcList dlcs={dlcs}/>
                     </section>
                 </>
             )}
             <section>
-                <h2>Tags:</h2>
+                <h2 className={styled.gameSectionHeading}>Tags:</h2>
                 <ul className={reusablestyles.list}>{tagsList}</ul>
             </section>
             {achievements.length > 0 && (
                 <section className={styled.gameAchievements}>
                     <div className={styled.gameAchievementsTop}>
-                        <h2>{name} achievements:</h2>
+                        <h2 className={styled.gameSectionHeading}>{name} achievements:</h2>
                         <p>{achievements_count} achievements</p>
                     </div>
                     <AchievementsList achievements={achievements}/>
                 </section>
             )}
+
+            {posts.length > 0 && (
+                <section className={styled.gameAchievements}>
+                    <div className={styled.gameAchievementsTop}>
+                        <div className={styled.gameSectionHeadingContainer}>
+                            <h2 className={styled.gameSectionHeading}>{name} posts:</h2>
+                            <img src={reddit} height={20} alt="" draggable={false}/>
+                        </div>
+                        <p>{posts.length} posts</p>
+                    </div>
+                    <PostsList posts={posts}/>
+                </section>
+            )}
+
             <section>
-                <h2>Website:</h2>
+                <h2 className={styled.gameSectionHeading}>Website:</h2>
                 <a className={styled.gameWebsiteLink} href={website}>
                     {website}
                 </a>
@@ -226,12 +245,12 @@ const Game = () => {
             <section>{systemRequirements}</section>
             {personDevelopers.length > 0 && (
                 <section>
-                    <h2>{name} created by:</h2>
+                    <h2 className={styled.gameSectionHeading}>{name} created by:</h2>
                     <DevelopersList developers={personDevelopers}/>
                 </section>
             )}
             {screenshots.length > 0 && <section className={styled.rightSection}>
-                <h2>{name} screenshots:</h2>
+                <h2 className={styled.gameSectionHeading}>{name} screenshots:</h2>
                 <Screenshots screenshots={screenshots}/>
             </section>}
         </section>

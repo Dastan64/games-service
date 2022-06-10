@@ -1,0 +1,26 @@
+.postContainer {
+    display: flex;
+    gap: 16px;
+}
+
+.postPreviewContainer {
+    width: 70px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.postTitle {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.postInfo {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--breadcrumbColor);
+    font-size: 0.75rem;
+}

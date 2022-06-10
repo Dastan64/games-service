@@ -1,17 +1,17 @@
-.achievementsList {
+.postsList {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 20px;
 }
 
 @media screen and (min-width: 576px) and (max-width: 960px) {
-    .achievementsList {
-        grid-template-columns: repeat(2, 1fr);
+    .postsList {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
 @media screen and (max-width: 575px) {
-    .achievementsList {
+    .postsList {
         grid-template-columns: 1fr;
     }
 }

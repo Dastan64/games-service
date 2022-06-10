@@ -2,8 +2,21 @@
     color: var(--white);
 }
 
+.gameSectionHeading {
+    display: inline-block;
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+}
+
+.gameSectionHeadingContainer {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
 .gameSection section {
-    margin: 20px 0;
+    margin: 24px 0;
 }
 
 .gameBreadcrumbs {
@@ -110,9 +123,7 @@
 }
 
 .gameWebsiteLink {
-    display: inline-block;
-    border-bottom: 1px dashed var(--white);
-    margin-top: 10px;
+    display: block;
     padding-bottom: 5px;
     color: var(--white);
 }
