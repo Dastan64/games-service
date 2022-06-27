@@ -5,7 +5,7 @@ import { formatDate } from '../../utils/formatDate';
 const Post = ({post}) => {
     const {name, image, url, username, created} = post ?? {};
     return (
-        <article>
+        <article className={styled.post}>
             <a href={url} target="_blank" rel="noopener noreferrer">
                 <div className={styled.postContainer}>
                     {image && <div className={styled.postPreviewContainer} style={{backgroundImage: `url(${image})`}}>

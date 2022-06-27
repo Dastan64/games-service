@@ -34,6 +34,7 @@ import Tags from '../../pages/Tags/Tags';
 import Developers from '../../pages/Developers/Developers';
 import Publishers from '../../pages/Publishers/Publishers';
 import Creators from '../../pages/Creators/Creators';
+import DetailsPage from '../../pages/DetailsPage/DetailsPage';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -58,18 +59,24 @@ const App = () => {
                 <Route path="/" element={<SharedLayout/>}>
                     <Route index element={<Home games={games}/>}/>
                     <Route path="games" element={<GamesList games={games}/>}/>
+                    <Route path="games/:slug" element={<DetailsPage type={'platforms'}/>}/>
                     <Route path="games/liked" element={<LikedGames/>}/>
                     <Route path="games/wishlist" element={<WishedGames/>}/>
-                    <Route path="games/:platformSlug" element={<PlatformDetail/>}/>
                     <Route path="game/:slug" element={<Game/>}/>
                     <Route path="platforms" element={<Platforms/>}/>
+                    <Route path="platforms/:slug" element={<DetailsPage type={'platforms'}/>}/>
                     <Route path="stores" element={<Stores/>}/>
+                    <Route path="stores/:slug" element={<DetailsPage type={'stores'}/>}/>
                     <Route path="genres" element={<Genres/>}/>
                     <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
                     <Route path="tags" element={<Tags/>}/>
+                    <Route path="tags/:slug" element={<DetailsPage type={'tags'}/>}/>
                     <Route path="developers" element={<Developers/>}/>
+                    <Route path="developers/:slug" element={<DetailsPage type={'developers'}/>}/>
                     <Route path="publishers" element={<Publishers/>}/>
+                    <Route path="publishers/:slug" element={<DetailsPage type={'publishers'}/>}/>
                     <Route path="creators" element={<Creators/>}/>
+                    <Route path="creators/:slug" element={<DetailsPage type={'creators'}/>}/>
                 </Route>
             </Routes>
         </div>

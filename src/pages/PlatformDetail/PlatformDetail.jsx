@@ -14,11 +14,11 @@ import GamesList from '../../components/GamesList/GamesList';
 import Loader from '../../components/Loader/Loader';
 
 const PlatformDetail = () => {
-    const {platformSlug} = useParams();
-    const [platformId, setPlatformId] = useState();
-    const platforms = useSelector(state => state.platforms.platforms);
-    const games = useSelector(state => state.games.games);
+    const { platformSlug } = useParams();
     const dispatch = useDispatch();
+    const [platformId, setPlatformId] = useState();
+    const games = useSelector(state => state.games.games);
+    const platforms = useSelector(state => state.platforms.platforms);
 
     useEffect(() => {
         const id = platforms.find(platform => platform.slug === platformSlug).id;
@@ -35,7 +35,7 @@ const PlatformDetail = () => {
         <div>
             <h1 className={styled.pageHeading}>{platformDetails?.name ? `Games for ${platformDetails.name}` : ''}</h1>
             {platformDetails?.description ?
-                <div dangerouslySetInnerHTML={{__html: platformDetails.description}}></div> : ''}
+                <div dangerouslySetInnerHTML={{ __html: platformDetails.description }}></div> : ''}
             {games.length > 0 ? <GamesList games={games}/> : <Loader/>}
         </div>
     );

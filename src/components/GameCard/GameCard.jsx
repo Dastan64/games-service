@@ -10,21 +10,21 @@ import reusablestyles from '../../reusable/reusable.module.css';
 import noImage from '../../assets/images/no-image.png';
 
 import { formatDate } from '../../utils/formatDate';
-import { platforms as platformsList } from '../../platforms';
+import { platforms as platformsList } from '../../static/platforms';
 
-const GameCard = ({game}) => {
+const GameCard = ({ game }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [isWished, setIsWished] = useState(false);
     const dispatch = useDispatch();
     const cardRef = useRef(null);
 
-    const {added, name, platforms, genres, background_image, metacritic, released, slug, id} = game ?? {}
+    const { added, name, platforms, genres, background_image, metacritic, released, slug, id } = game ?? {}
 
     const platformIcons = platforms && platforms.map((gamePlatform) => {
         const obj = platformsList.find((platform) =>
             platform.slug.includes(gamePlatform.platform.slug)
         );
-        return obj && <img key={uuidv4()} src={obj.img} alt="" draggable="false"/>;
+        return obj && <img key={uuidv4()} src={obj.image_background} alt={obj.name} draggable="false"/>;
     });
 
     const ratingNumberStyle = clsx({
@@ -48,9 +48,9 @@ const GameCard = ({game}) => {
     function handleLike(e) {
         e.preventDefault();
         if (!isLiked) {
-            dispatch({type: 'LIKE_GAME', payload: +cardRef.current.dataset.id});
+            dispatch({ type: 'LIKE_GAME', payload: +cardRef.current.dataset.id });
         } else {
-            dispatch({type: 'UNLIKE_GAME', payload: +cardRef.current.dataset.id});
+            dispatch({ type: 'UNLIKE_GAME', payload: +cardRef.current.dataset.id });
         }
         setIsLiked(!isLiked);
     }
@@ -58,9 +58,9 @@ const GameCard = ({game}) => {
     function handleWish(e) {
         e.preventDefault();
         if (!isWished) {
-            dispatch({type: 'WISH_GAME', payload: +cardRef.current.dataset.id});
+            dispatch({ type: 'WISH_GAME', payload: +cardRef.current.dataset.id });
         } else {
-            dispatch({type: 'UNWISH_GAME', payload: +cardRef.current.dataset.id});
+            dispatch({ type: 'UNWISH_GAME', payload: +cardRef.current.dataset.id });
         }
         setIsWished(!isWished);
     }
