@@ -1,0 +1,12 @@
+.detailsTitle {
+    font-size: clamp(2rem, 4vw, 4.5rem);
+    margin-bottom: 16px;
+}
+
+.detailsText p {
+    line-height: 1.5;
+}
+
+.detailsText p:not(:last-child) {
+    margin-bottom: 8px;
+}

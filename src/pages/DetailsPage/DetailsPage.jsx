@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import styled from '../GenreDetails/GenreDetail.module.css';
+import styled from '../DetailsPage/DetailsPage.module.css';
 
 //Hooks
 import { useParams } from 'react-router-dom';
@@ -11,25 +11,26 @@ import Loader from '../../components/Loader/Loader';
 import { fetchDetails } from '../../utils/fetchDetails';
 import { fetchGames } from '../../utils/fetchGames';
 
-const DetailsPage = ({ type }) => {
+const DetailsPage = ({ source }) => {
     const [id, setId] = useState();
     const [details, setDetails] = useState();
     const [games, setGames] = useState([]);
     const { slug } = useParams();
-    const data = useSelector(state => state[type][type]);
+    const data = useSelector(state => state[source][source]);
 
     useEffect(() => {
         const id = data.find(item => item.slug === slug).id;
         setId(id);
-        fetchDetails(type, id).then(data => setDetails(data));
-        fetchGames(type, id).then(games => setGames(games.results));
-    }, [slug, id, data, type])
+        fetchDetails(source, id).then(data => setDetails(data));
+        fetchGames(source, id).then(games => setGames(games.results));
+    }, [slug, id, data, source])
 
     return (
         <div>
-            <h1>{details?.name ? `${details.name} Games` : ''}</h1>
+            <h1 className={styled.detailsTitle}>{details?.name ? `${details.name} Games` : ''}</h1>
             {details?.description ?
-                <div dangerouslySetInnerHTML={{ __html: details.description }}></div> : ''}
+                <div className={styled.detailsText}
+                     dangerouslySetInnerHTML={{ __html: details.description }}></div> : ''}
             {games.length > 0 ? <GamesList games={games}/> : <Loader/>}
         </div>
     );

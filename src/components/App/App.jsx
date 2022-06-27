@@ -24,8 +24,6 @@ import SharedLayout from '../SharedLayout/SharedLayout';
 //Pages
 import LikedGames from '../../pages/LikedGames/LikedGames';
 import Platforms from '../../pages/Platforms/Platforms';
-import PlatformDetail from '../../pages/PlatformDetail/PlatformDetail';
-import GenreDetail from '../../pages/GenreDetail/GenreDetail';
 import Stores from '../../pages/Stores/Stores';
 import Home from '../../pages/Home/Home';
 import WishedGames from '../../pages/WishedGames/WishedGames';
@@ -59,24 +57,24 @@ const App = () => {
                 <Route path="/" element={<SharedLayout/>}>
                     <Route index element={<Home games={games}/>}/>
                     <Route path="games" element={<GamesList games={games}/>}/>
-                    <Route path="games/:slug" element={<DetailsPage type={'platforms'}/>}/>
+                    <Route path="games/:slug" element={<DetailsPage source={'platforms'}/>}/>
                     <Route path="games/liked" element={<LikedGames/>}/>
                     <Route path="games/wishlist" element={<WishedGames/>}/>
                     <Route path="game/:slug" element={<Game/>}/>
                     <Route path="platforms" element={<Platforms/>}/>
-                    <Route path="platforms/:slug" element={<DetailsPage type={'platforms'}/>}/>
+                    <Route path="platforms/:slug" element={<DetailsPage source={'platforms'}/>}/>
                     <Route path="stores" element={<Stores/>}/>
-                    <Route path="stores/:slug" element={<DetailsPage type={'stores'}/>}/>
+                    <Route path="stores/:slug" element={<DetailsPage source={'stores'}/>}/>
                     <Route path="genres" element={<Genres/>}/>
-                    <Route path="genres/:genreSlug" element={<GenreDetail/>}/>
+                    <Route path="genres/:slug" element={<DetailsPage source={'genres'}/>}/>
                     <Route path="tags" element={<Tags/>}/>
-                    <Route path="tags/:slug" element={<DetailsPage type={'tags'}/>}/>
+                    <Route path="tags/:slug" element={<DetailsPage source={'tags'}/>}/>
                     <Route path="developers" element={<Developers/>}/>
-                    <Route path="developers/:slug" element={<DetailsPage type={'developers'}/>}/>
+                    <Route path="developers/:slug" element={<DetailsPage source={'developers'}/>}/>
                     <Route path="publishers" element={<Publishers/>}/>
-                    <Route path="publishers/:slug" element={<DetailsPage type={'publishers'}/>}/>
+                    <Route path="publishers/:slug" element={<DetailsPage source={'publishers'}/>}/>
                     <Route path="creators" element={<Creators/>}/>
-                    <Route path="creators/:slug" element={<DetailsPage type={'creators'}/>}/>
+                    <Route path="creators/:slug" element={<DetailsPage source={'creators'}/>}/>
                 </Route>
             </Routes>
         </div>
