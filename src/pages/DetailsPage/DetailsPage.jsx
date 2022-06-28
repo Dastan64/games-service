@@ -23,8 +23,10 @@ const DetailsPage = ({ source }) => {
     useEffect(() => {
         const id = data.find(item => item.slug === slug).id;
         setId(id);
-        fetchDetails(source, id).then(data => setDetails(data));
-        fetchGames(source, id).then(games => setGames(games.results));
+        if (id) {
+            fetchDetails(source, id).then(data => setDetails(data));
+            fetchGames(source, id).then(games => setGames(games.results));
+        }
     }, [slug, id, data, source])
 
     const formatTitle = (source, title) => {

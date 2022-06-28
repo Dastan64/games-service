@@ -1,17 +1,22 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 //Styles
 import reusableStyles from '../../reusable/reusable.module.css';
 
-import CardsList from '../../components/CardsList/CardsList';
+import { getCreators } from '../../store/actions/creators';
+import InfiniteScroller from '../../components/InfiniteScroller/InfiniteScroller';
 
 const Creators = () => {
     const creators = useSelector(state => state.creators.creators);
+    const hasMoreCreators = useSelector(state => state.creators.hasMore);
+
     return (
         <section>
             <h1 className={`${reusableStyles.mainHeading} ${reusableStyles.pageHeading}`}>Creators</h1>
-            {creators.length > 0 && <CardsList data={creators} route={'/creators'} type={'creator'}/>}
+            {creators.length > 0 && (
+                <InfiniteScroller type={'creators'} callback={getCreators} data={creators} hasMore={hasMoreCreators}/>
+            )}
         </section>
     );
 };

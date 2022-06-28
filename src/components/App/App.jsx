@@ -43,10 +43,10 @@ const App = () => {
         dispatch(getPlatforms())
         dispatch(getStores())
         dispatch(getGenres())
-        dispatch(getTags())
-        dispatch(getDevelopers())
-        dispatch(getPublishers())
-        dispatch(getCreators())
+        dispatch(getTags(1))
+        dispatch(getDevelopers(1))
+        dispatch(getPublishers(1))
+        dispatch(getCreators(1))
     }, [dispatch]);
 
     const games = useSelector((state) => state.games.games);

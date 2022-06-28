@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import reusableStyles from '../../reusable/reusable.module.css';
 import PersonCard from '../PersonCard/PersonCard';
 
-const CardsList = ({data, route, type}) => {
+const CardsList = ({ data, route, type }) => {
     return (
         <ul className={reusableStyles.grid}>
             {data.map(item => type === 'creator' ? <PersonCard developer={item} key={item.id}/> :
