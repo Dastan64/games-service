@@ -9,7 +9,7 @@ import Loader from '../Loader/Loader';
 import grid from '../../assets/images/grid.svg';
 import column from '../../assets/images/column.svg';
 
-const GamesList = ({games}) => {
+const GamesList = ({ games }) => {
     const [isGridViewActive, setIsGridViewActive] = useState(true);
 
     function changeView() {

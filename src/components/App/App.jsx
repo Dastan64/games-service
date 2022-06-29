@@ -40,9 +40,9 @@ const App = () => {
     useEffect(() => {
         dispatch(getGamesCount())
         dispatch(getGames())
-        dispatch(getPlatforms())
-        dispatch(getStores())
-        dispatch(getGenres())
+        dispatch(getPlatforms(1))
+        dispatch(getStores(1))
+        dispatch(getGenres(1))
         dispatch(getTags(1))
         dispatch(getDevelopers(1))
         dispatch(getPublishers(1))

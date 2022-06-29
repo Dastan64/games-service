@@ -3,9 +3,9 @@ import styled from './Card.module.css';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-const Card = ({obj, data, route, type}) => {
+const Card = ({ obj, data, route, type }) => {
     const [isFollowed, setIsFollowed] = useState(false);
-    const {slug, id, image, name, year_start, image_background, games_count, games} = obj ?? {};
+    const { slug, id, image, name, year_start, image_background, games_count, games } = obj ?? {};
     const cardRef = useRef(null);
     const dispatch = useDispatch();
 

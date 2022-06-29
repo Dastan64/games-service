@@ -6,6 +6,7 @@ import reusableStyles from '../../reusable/reusable.module.css';
 
 import InfiniteScroller from '../../components/InfiniteScroller/InfiniteScroller';
 import { getTags } from '../../store/actions/tags';
+import CardsList from '../../components/CardsList/CardsList';
 
 const Tags = () => {
     const tags = useSelector(state => state.tags.tags);
@@ -14,7 +15,11 @@ const Tags = () => {
     return (
         <section>
             <h1 className={`${reusableStyles.mainHeading} ${reusableStyles.pageHeading}`}>Tags</h1>
-            {tags.length > 0 && <InfiniteScroller data={tags} type={'tags'} hasMore={hasMoreTags} callback={getTags}/>}
+            {tags.length > 0 && (
+                <InfiniteScroller data={tags} hasMore={hasMoreTags} callback={getTags}>
+                    <CardsList data={tags} type={'tags'} route={'tags'}/>
+                </InfiniteScroller>
+            )}
         </section>
     );
 };
