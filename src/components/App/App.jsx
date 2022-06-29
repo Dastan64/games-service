@@ -23,16 +23,10 @@ import SharedLayout from '../SharedLayout/SharedLayout';
 
 //Pages
 import LikedGames from '../../pages/LikedGames/LikedGames';
-import Platforms from '../../pages/Platforms/Platforms';
-import Stores from '../../pages/Stores/Stores';
 import Home from '../../pages/Home/Home';
 import WishedGames from '../../pages/WishedGames/WishedGames';
-import Genres from '../../pages/Genres/Genres';
-import Tags from '../../pages/Tags/Tags';
-import Developers from '../../pages/Developers/Developers';
-import Publishers from '../../pages/Publishers/Publishers';
-import Creators from '../../pages/Creators/Creators';
 import DetailsPage from '../../pages/DetailsPage/DetailsPage';
+import CategoryPage from '../../pages/CategoryPage/CategoryPage';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -61,19 +55,25 @@ const App = () => {
                     <Route path="games/liked" element={<LikedGames/>}/>
                     <Route path="games/wishlist" element={<WishedGames/>}/>
                     <Route path="game/:slug" element={<Game/>}/>
-                    <Route path="platforms" element={<Platforms/>}/>
+                    <Route path="platforms" element={<CategoryPage category={'platforms'} title={'platforms'}
+                                                                   callback={getPlatforms}/>}/>
                     <Route path="platforms/:slug" element={<DetailsPage source={'platforms'}/>}/>
-                    <Route path="stores" element={<Stores/>}/>
+                    <Route path="stores"
+                           element={<CategoryPage category={'stores'} title={'stores'} callback={getStores}/>}/>
                     <Route path="stores/:slug" element={<DetailsPage source={'stores'}/>}/>
-                    <Route path="genres" element={<Genres/>}/>
+                    <Route path="genres"
+                           element={<CategoryPage category={'genres'} title={'genres'} callback={getGenres}/>}/>
                     <Route path="genres/:slug" element={<DetailsPage source={'genres'}/>}/>
-                    <Route path="tags" element={<Tags/>}/>
+                    <Route path="tags" element={<CategoryPage category={'tags'} title={'tags'} callback={getTags}/>}/>
                     <Route path="tags/:slug" element={<DetailsPage source={'tags'}/>}/>
-                    <Route path="developers" element={<Developers/>}/>
+                    <Route path="developers" element={<CategoryPage category={'developers'} title={'developers'}
+                                                                    callback={getDevelopers}/>}/>
                     <Route path="developers/:slug" element={<DetailsPage source={'developers'}/>}/>
-                    <Route path="publishers" element={<Publishers/>}/>
+                    <Route path="publishers" element={<CategoryPage category={'publishers'} title={'publishers'}
+                                                                    callback={getPublishers}/>}/>
                     <Route path="publishers/:slug" element={<DetailsPage source={'publishers'}/>}/>
-                    <Route path="creators" element={<Creators/>}/>
+                    <Route path="creators"
+                           element={<CategoryPage category={'creators'} title={'creators'} callback={getCreators}/>}/>
                     <Route path="creators/:slug" element={<DetailsPage source={'creators'}/>}/>
                 </Route>
             </Routes>
