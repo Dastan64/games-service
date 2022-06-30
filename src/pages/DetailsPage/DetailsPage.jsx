@@ -25,7 +25,7 @@ const DetailsPage = ({ source }) => {
         setId(id);
         if (id) {
             fetchDetails(source, id).then(data => setDetails(data));
-            fetchGames(source, id).then(games => setGames(games.results));
+            fetchGames(source, id).then(data => setGames(data.results));
         }
     }, [slug, id, data, source])
 

@@ -122,8 +122,14 @@
     justify-content: space-between;
 }
 
+.gameWebsiteSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .gameWebsiteLink {
-    display: block;
+    border-bottom: 1px dashed var(--white);
     padding-bottom: 5px;
     color: var(--white);
 }

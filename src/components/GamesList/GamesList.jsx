@@ -4,17 +4,17 @@ import React, { useState } from 'react';
 //Components
 import GameCard from '../GameCard/GameCard';
 import Loader from '../Loader/Loader';
+import InfiniteScroller from '../InfiniteScroller/InfiniteScroller';
+
+import { getGames } from '../../store/actions/games';
 
 //Images
 import grid from '../../assets/images/grid.svg';
 import column from '../../assets/images/column.svg';
 
-const GamesList = ({ games }) => {
+const GamesList = ({ games, hasMore }) => {
     const [isGridViewActive, setIsGridViewActive] = useState(true);
-
-    function changeView() {
-        setIsGridViewActive(!isGridViewActive);
-    }
+    const changeView = () => setIsGridViewActive(!isGridViewActive);
 
     return (
         <>
@@ -37,11 +37,14 @@ const GamesList = ({ games }) => {
                             </button>
                         </div>
                     </div>
-                    <div className={isGridViewActive ? styles.games : styles.gamesColumn}>
-                        {games.map((game) => (
-                            <GameCard game={game} key={game.id}/>
-                        ))}
-                    </div>
+                    <InfiniteScroller data={games} hasMore={hasMore}
+                                      callback={getGames}>
+                        <div className={isGridViewActive ? styles.games : styles.gamesColumn}>
+                            {games.map((game) => (
+                                <GameCard game={game} key={game.id}/>
+                            ))}
+                        </div>
+                    </InfiniteScroller>
                 </>
             ) : (
                 <Loader/>

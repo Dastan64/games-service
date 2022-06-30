@@ -13,7 +13,7 @@ const InfiniteScroller = ({ data, callback, children, hasMore }) => {
     }
 
     return (
-        <InfiniteScroll dataLength={data.length} loader={<Loader/>} next={getMoreItems}
+        <InfiniteScroll style={{ overflow: 'unset' }} dataLength={data.length} loader={<Loader/>} next={getMoreItems}
                         hasMore={hasMore}>
             {children}
         </InfiniteScroll>

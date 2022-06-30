@@ -15,8 +15,6 @@ const HeaderSearch = () => {
     const dispatch = useDispatch();
     const inputRef = useRef(null);
 
-    // const gamesCount = useSelector(state => state.games.gamesCount)
-
     function handleChange(e) {
         setInputValue(e.target.value);
     }
@@ -26,8 +24,8 @@ const HeaderSearch = () => {
         if (inputValue === '') {
             return;
         }
-        dispatch(searchGames(inputValue))
-        navigate('/games')
+        dispatch(searchGames(inputValue, 1))
+        navigate(`/search/?query=${inputValue}`)
     }
 
     function handleKeyPress(e) {

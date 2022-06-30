@@ -30,7 +30,7 @@ import AchievementsList from '../AchievementsList/AchievementsList';
 import PostsList from '../PostsList/PostsList';
 
 const Game = () => {
-    const {slug} = useParams();
+    const { slug } = useParams();
     const dispatch = useDispatch();
 
     let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;
@@ -141,7 +141,7 @@ const Game = () => {
                 <h2 className={styled.gameSectionHeading}>About</h2>
                 <div
                     className={styled.gameDescriptionContainer}
-                    dangerouslySetInnerHTML={{__html: description}}
+                    dangerouslySetInnerHTML={{ __html: description }}
                 ></div>
             </section>
             <section className="info">
@@ -236,7 +236,7 @@ const Game = () => {
                 </section>
             )}
 
-            <section>
+            <section className={styled.gameWebsiteSection}>
                 <h2 className={styled.gameSectionHeading}>Website:</h2>
                 <a className={styled.gameWebsiteLink} href={website}>
                     {website}

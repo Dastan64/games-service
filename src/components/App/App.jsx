@@ -2,7 +2,7 @@
 import styled from './App.module.css';
 
 //Hooks and core
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -17,7 +17,6 @@ import { getPublishers } from '../../store/actions/publishers';
 import { getCreators } from '../../store/actions/creators';
 
 //Components
-import GamesList from '../GamesList/GamesList';
 import Game from '../Game/Game';
 import SharedLayout from '../SharedLayout/SharedLayout';
 
@@ -33,7 +32,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(getGamesCount())
-        dispatch(getGames())
+        dispatch(getGames(1))
         dispatch(getPlatforms(1))
         dispatch(getStores(1))
         dispatch(getGenres(1))
@@ -43,15 +42,11 @@ const App = () => {
         dispatch(getCreators(1))
     }, [dispatch]);
 
-    const games = useSelector((state) => state.games.games);
-
     return (
         <div className={styled.app}>
             <Routes>
                 <Route path="/" element={<SharedLayout/>}>
-                    <Route index element={<Home games={games}/>}/>
-                    <Route path="games" element={<GamesList games={games}/>}/>
-                    <Route path="games/:slug" element={<DetailsPage source={'platforms'}/>}/>
+                    <Route index element={<Home/>}/>
                     <Route path="games/liked" element={<LikedGames/>}/>
                     <Route path="games/wishlist" element={<WishedGames/>}/>
                     <Route path="game/:slug" element={<Game/>}/>
