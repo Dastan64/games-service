@@ -6,9 +6,9 @@ import { Link, useParams } from 'react-router-dom';
 //Styles
 import styled from './Game.module.css';
 import reusablestyles from '../../reusable/reusable.module.css';
-import clsx from 'clsx';
 
 import reddit from '../../assets/images/reddit.png';
+import clsx from 'clsx';
 
 //Utils
 import { formatDate } from '../../utils/formatDate';
@@ -33,7 +33,7 @@ const Game = () => {
     const { slug } = useParams();
     const dispatch = useDispatch();
 
-    let platformsList, genresList, developersList, publishersList, tagsList, systemRequirements;
+    let platformsList, systemRequirements;
 
     useEffect(() => {
         dispatch(getGameDetails(slug))
@@ -89,30 +89,29 @@ const Game = () => {
         });
     }
 
-    if (genres?.length > 0) {
-        genresList = genres.map((genre, index) => <Link className={styled.gameLink}
-                                                        to={`/genres/${genre.slug}`}
-                                                        key={genre.id}>{(index ? ', ' : '') + genre.name}</Link>);
-    }
-    if (developers?.length > 0) {
-        developersList = developers.map((developer, index) => {
-            return <Link className={styled.gameLink}
-                         to={`/developers/${developer.slug}`}
-                         key={developer.id}>{(index ? ', ' : '') + developer.name}</Link>
-        });
-    }
-    if (publishers?.length > 0) {
-        publishersList = publishers.map((publisher, index) => <Link className={styled.gameLink}
-                                                                    to={`/developers/${publisher.slug}`}
-                                                                    key={publisher.id}>{(index ? ', ' : '') + publisher.name}</Link>);
-    }
-    if (tags?.length > 0) {
-        tagsList = tags.map((tag, index) => (
-            <li className={reusablestyles.listItem} key={tag.id}>
-                {(index ? ', ' : '') + tag.name}
-            </li>
-        ));
-    }
+    //Game genres list
+    const genresList = genres?.length > 0 && genres.map((genre, index) => <Link className={styled.gameLink}
+                                                                                to={`/genres/${genre.slug}`}
+                                                                                key={genre.id}>{(index ? ', ' : '') + genre.name}</Link>);
+    //Game developers (companies) list
+    const developersList = developers?.length > 0 && developers.map((developer, index) => {
+        return <Link className={styled.gameLink}
+                     to={`/developers/${developer.slug}`}
+                     key={developer.id}>{(index ? ', ' : '') + developer.name}</Link>
+    });
+
+    //Game publishers (companies) list
+    const publishersList = publishers?.length > 0 && publishers.map((publisher, index) => <Link
+        className={styled.gameLink}
+        to={`/developers/${publisher.slug}`}
+        key={publisher.id}>{(index ? ', ' : '') + publisher.name}</Link>);
+
+    //Game tags list
+    const tagsList = tags?.length > 0 && tags.map((tag, index) => (
+        <li className={reusablestyles.listItem} key={tag.id}>
+            {(index ? ', ' : '') + tag.name}
+        </li>
+    ));
 
     //Conditional classes
     const ratingNumberStyle = clsx({
