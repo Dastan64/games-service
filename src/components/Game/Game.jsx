@@ -60,10 +60,14 @@ const Game = () => {
         publishers,
         tags,
         achievements_count,
+        esrb_rating,
         website,
     } = game ?? {};
+
     if (platforms?.length > 0) {
-        platformsList = platforms.map((platform) => platform.platform.name).join(', ');
+        platformsList = platforms.map((platform, index) => <Link className={styled.gameLink}
+                                                                 to={`/platforms/${platform.platform.slug}`}
+                                                                 key={platform.platform.id}>{(index ? ', ' : '') + platform.platform.name}</Link>);
         systemRequirements = platforms.filter(platform => Object.keys(platform.requirements).length > 0).map((platform) => {
             return (
                 <div key={platform.platform.id}>
@@ -86,13 +90,21 @@ const Game = () => {
     }
 
     if (genres?.length > 0) {
-        genresList = genres.map((genre) => genre.name).join(', ');
+        genresList = genres.map((genre, index) => <Link className={styled.gameLink}
+                                                        to={`/genres/${genre.slug}`}
+                                                        key={genre.id}>{(index ? ', ' : '') + genre.name}</Link>);
     }
     if (developers?.length > 0) {
-        developersList = developers.map((developer) => developer.name).join(', ');
+        developersList = developers.map((developer, index) => {
+            return <Link className={styled.gameLink}
+                         to={`/developers/${developer.slug}`}
+                         key={developer.id}>{(index ? ', ' : '') + developer.name}</Link>
+        });
     }
     if (publishers?.length > 0) {
-        publishersList = publishers.map((publisher) => publisher.name).join(', ');
+        publishersList = publishers.map((publisher, index) => <Link className={styled.gameLink}
+                                                                    to={`/developers/${publisher.slug}`}
+                                                                    key={publisher.id}>{(index ? ', ' : '') + publisher.name}</Link>);
     }
     if (tags?.length > 0) {
         tagsList = tags.map((tag, index) => (
@@ -148,7 +160,7 @@ const Game = () => {
                 <div className={styled.infoGrid}>
                     <div className="info__grid-item">
                         <h4 className={styled.infoCaption}>Platforms</h4>
-                        <p className={styled.infoText}>{platformsList}</p>
+                        {platformsList}
                     </div>
                     {metacritic && (
                         <div className="info__grid-item">
@@ -168,15 +180,15 @@ const Game = () => {
                     </div>
                     <div className="info__grid-item">
                         <h4 className={styled.infoCaption}>Developer</h4>
-                        <p className={styled.infoText}>{developersList}</p>
+                        {developersList}
                     </div>
                     <div className="info__grid-item">
                         <h4 className={styled.infoCaption}>Publisher</h4>
-                        <p className={styled.infoText}>{publishersList}</p>
+                        {publishersList}
                     </div>
                     <div className="info__grid-item">
                         <h4 className={styled.infoCaption}>Age rating</h4>
-                        <p className={styled.infoText}>The Coalition</p>
+                        <p className={styled.infoText}>{esrb_rating?.name}</p>
                     </div>
                 </div>
             </section>
