@@ -89,6 +89,10 @@
     stroke: var(--softRed)
 }
 
+.gameCardBookmarkBtn:hover {
+    z-index: 3;
+}
+
 .gameCardInfo {
     display: flex;
     flex-direction: column;
