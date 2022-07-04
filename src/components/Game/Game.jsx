@@ -187,7 +187,7 @@ const Game = () => {
                     </div>
                     <div className="info__grid-item">
                         <h4 className={styled.infoCaption}>Age rating</h4>
-                        <p className={styled.infoText}>{esrb_rating?.name}</p>
+                        <p className={styled.infoText}>{esrb_rating?.name ?? 'Not rated'}</p>
                     </div>
                 </div>
             </section>
