@@ -9,14 +9,16 @@ const Aside = () => {
     const following = useSelector(state => state.following.following);
     return (
         <aside className={styled.aside}>
-            <div>
-                <Link to={'/'}><h3 className={styled.navSectionTitle}>Home</h3></Link>
-            </div>
-            <NavSection title="Following" listItems={following}/>
-            <NavSection title="You" listItems={mockData.personal}/>
-            <NavSection title="Browse" listItems={mockData.browse}/>
-            <NavSection title="Platforms" listItems={mockData.platforms}/>
-            <NavSection title="Genres" listItems={mockData.genres}/>
+            <nav>
+                <div>
+                    <Link to={'/'}><h3 className={styled.navSectionTitle}>Home</h3></Link>
+                </div>
+                <NavSection title="Following" listItems={following}/>
+                <NavSection title="You" listItems={mockData.personal}/>
+                <NavSection title="Browse" listItems={mockData.browse}/>
+                <NavSection title="Platforms" listItems={mockData.platforms}/>
+                <NavSection title="Genres" listItems={mockData.genres}/>
+            </nav>
         </aside>
     );
 };
