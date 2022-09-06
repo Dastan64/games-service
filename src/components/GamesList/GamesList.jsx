@@ -6,13 +6,11 @@ import GameCard from '../GameCard/GameCard';
 import Loader from '../Loader/Loader';
 import InfiniteScroller from '../InfiniteScroller/InfiniteScroller';
 
-import { getGames } from '../../store/actions/games';
-
 //Images
 import grid from '../../assets/images/grid.svg';
 import column from '../../assets/images/column.svg';
 
-const GamesList = ({ games, hasMore }) => {
+const GamesList = ({ games, hasMore, callback, params }) => {
     const [isGridViewActive, setIsGridViewActive] = useState(true);
     const changeView = () => setIsGridViewActive(!isGridViewActive);
 
@@ -38,7 +36,7 @@ const GamesList = ({ games, hasMore }) => {
                         </div>
                     </div>
                     <InfiniteScroller data={games} hasMore={hasMore}
-                                      callback={getGames}>
+                                      callback={callback} params={params}>
                         <div className={isGridViewActive ? styles.games : styles.gamesColumn}>
                             {games.map((game) => (
                                 <GameCard game={game} key={game.id}/>

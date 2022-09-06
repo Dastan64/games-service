@@ -1,4 +1,5 @@
 import {
+    CLEAR_GAMES,
     LOAD_GAMES,
     LOAD_GAMES_INFO,
     SEARCH_GAMES,
@@ -36,6 +37,8 @@ export const gamesReducer = (state = initialState, action) => {
             return { ...state, wishlistGamesIds: [...state.wishlistGamesIds, action.payload] }
         case 'UNWISH_GAME':
             return { ...state, wishlistGamesIds: state.wishlistGamesIds.filter(id => id !== action.payload) }
+        case CLEAR_GAMES:
+            return { ...state, games: [] }
         default:
             return state;
     }

@@ -14,3 +14,7 @@
 .detailsText p:not(:last-child) {
     margin-bottom: 8px;
 }
+
+.detailsText p:last-child {
+    margin-bottom: 16px;
+}

@@ -3,6 +3,12 @@
     flex-basis: 200px;
 }
 
+@media screen and (max-width: 768px) {
+    .aside {
+        display: none;
+    }
+}
+
 .navSectionTitle {
     display: inline-block;
     font-size: 1.5rem;

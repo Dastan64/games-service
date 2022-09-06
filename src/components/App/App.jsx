@@ -3,7 +3,7 @@ import styled from './App.module.css';
 
 //Hooks and core
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Actions
@@ -19,6 +19,7 @@ import { getCreators } from '../../store/actions/creators';
 //Components
 import Game from '../Game/Game';
 import SharedLayout from '../SharedLayout/SharedLayout';
+import SearchPage from '../../pages/SearchPage/SearchPage';
 
 //Pages
 import LikedGames from '../../pages/LikedGames/LikedGames';
@@ -28,6 +29,8 @@ import DetailsPage from '../../pages/DetailsPage/DetailsPage';
 import CategoryPage from '../../pages/CategoryPage/CategoryPage';
 
 const App = () => {
+    const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -45,9 +48,13 @@ const App = () => {
     return (
         <div className={styled.app}>
             <Routes>
-                <Route path="/" element={<SharedLayout/>}>
-                    <Route index element={<Home/>}/>
+                <Route path="/" element={<SharedLayout isMobileMenuActive={isMobileMenuActive}
+                                                       setIsMobileMenuActive={setIsMobileMenuActive}/>}>
+                    <Route index element={<Home isMobileMenuActive={isMobileMenuActive}
+                                                setIsMobileMenuActive={setIsMobileMenuActive}/>}/>
+                    <Route path="games" element={<Home/>}/>
                     <Route path="games/liked" element={<LikedGames/>}/>
+                    <Route path="search" element={<SearchPage/>}/>
                     <Route path="games/wishlist" element={<WishedGames/>}/>
                     <Route path="game/:slug" element={<Game/>}/>
                     <Route path="platforms" element={<CategoryPage category={'platforms'} title={'platforms'}

@@ -42,6 +42,12 @@
 
 .cardLink {
     color: var(--white);
+    transition: color 0.2s ease-out, border-bottom-color 0.2s ease-out;
+}
+
+.cardLink:hover {
+    color: var(--breadcrumbColor);
+    border-bottom-color: var(--breadcrumbColor);
 }
 
 .yearStart {
@@ -89,9 +95,18 @@
     font-size: 0.875rem;
 }
 
-.cardNumber {
-    color: rgba(255, 255, 255, 0.4);
+.cardCount {
+    opacity: 0.4;
     font-size: 0.875rem;
+}
+
+.cardNumber {
+    opacity: 0.4;
+    padding-right: 16px;
+    font-size: 0.875rem;
+    background-image: url("../../assets/images/person.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
 }
 
 .cardGameNameLink {
@@ -100,6 +115,12 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    transition: color 0.2s ease-out, border-bottom-color 0.2s ease-out;
+}
+
+.cardGameNameLink:hover {
+    color: var(--breadcrumbColor);
+    border-bottom-color: var(--breadcrumbColor);
 }
 
 .cardGameName {

@@ -3,3 +3,10 @@
     min-width: 0;
     padding: 10px 16px;
 }
+
+@media screen and (max-width: 768px) {
+    .main {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

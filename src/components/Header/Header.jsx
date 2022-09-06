@@ -1,18 +1,20 @@
 import React from 'react';
-import styles from './Header.module.css'
+import styled from './Header.module.css'
 import HeaderSearch from '../HeaderSearch/HeaderSearch';
 import { Link } from 'react-router-dom';
+import BurgerBtn from '../BurgerBtn/BurgerBtn';
 
-const Header = () => {
+const Header = ({ isMobileMenuActive, setIsMobileMenuActive }) => {
     return (
         <header>
-            <div className={styles.headerWrapper}>
+            <div className={styled.headerWrapper}>
                 <Link to={'/'}>
                     <div className="header__logo-container">
-                        <span className={styles.logoCaption}>RAWG</span>
+                        <span className={styled.logoCaption}>RAWG</span>
                     </div>
                 </Link>
                 <HeaderSearch/>
+                <BurgerBtn active={isMobileMenuActive} setIsMobileMenuActive={setIsMobileMenuActive}/>
             </div>
         </header>
     );

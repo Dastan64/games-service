@@ -65,7 +65,7 @@ const Card = ({ obj, data, route, type }) => {
             <div className={styled.cardBottom}>
                 <div className={styled.cardTopLine}>
                     <h4>Popular items</h4>
-                    <p className={styled.cardNumber}>{games_count}</p>
+                    <p className={styled.cardCount}>{games_count}</p>
                 </div>
                 <div className={styled.cardKnown}>
                     {games.length > 0 &&
@@ -78,7 +78,7 @@ const Card = ({ obj, data, route, type }) => {
                                     >
                                         <h4 className={styled.cardGameName}>{game.name}</h4>
                                     </Link>
-                                    <p className={styled.cardNumber}>{game.added}</p>
+                                    <span className={styled.cardNumber}>{game.added}</span>
                                 </div>
                             );
                         })}

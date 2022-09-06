@@ -25,7 +25,10 @@ const HeaderSearch = () => {
             return;
         }
         dispatch(searchGames(inputValue, 1))
-        navigate(`/search/?query=${inputValue}`)
+        navigate({
+            pathname: '/search',
+            search: `?query=${inputValue}`,
+        })
     }
 
     function handleKeyPress(e) {

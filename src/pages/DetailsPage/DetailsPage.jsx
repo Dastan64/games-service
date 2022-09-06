@@ -1,44 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from '../DetailsPage/DetailsPage.module.css';
 
 //Hooks
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //Components
 import GamesList from '../../components/GamesList/GamesList';
 import Loader from '../../components/Loader/Loader';
 
 //Utils
-import { fetchDetails } from '../../utils/fetchDetails';
-import { fetchGames } from '../../utils/fetchGames';
+import { getDetails } from '../../store/actions/details';
+import { clearGames, getGames } from '../../store/actions/games';
+import { formatTitle } from '../../utils/formatTitle';
 
 const DetailsPage = ({ source }) => {
-    const [id, setId] = useState();
-    const [details, setDetails] = useState();
-    const [games, setGames] = useState([]);
-    const { slug } = useParams();
     const data = useSelector(state => state[source][source]);
+    const games = useSelector(state => state.games.games);
+    const details = useSelector(state => state.details.category);
+    const hasMoreGames = useSelector(state => state.games.hasMore);
+    const dispatch = useDispatch();
+    const { slug } = useParams();
+    const id = useMemo(() => data.find(item => item.slug === slug)?.id, [data, slug]);
+    const params = { source, id }
 
     useEffect(() => {
-        const id = data.find(item => item.slug === slug).id;
-        setId(id);
         if (id) {
-            fetchDetails(source, id).then(data => setDetails(data));
-            fetchGames(source, id).then(data => setGames(data.results));
+            dispatch(getDetails(source, id));
+            dispatch(getGames(1, source, id));
         }
-    }, [slug, id, data, source])
+    }, [data, dispatch, id, source])
 
-    const formatTitle = (source, title) => {
-        switch (source) {
-            case 'developers':
-                return `Developed by ${title}`;
-            case 'publishers':
-                return `Published by ${title}`;
-            default:
-                return title;
+    useEffect(() => {
+        if (games.length > 0) {
+            dispatch(clearGames())
         }
-    }
+    }, [dispatch])
 
     return (
         <div>
@@ -46,7 +43,9 @@ const DetailsPage = ({ source }) => {
             {details?.description ?
                 <div className={styled.detailsText}
                      dangerouslySetInnerHTML={{ __html: details.description }}></div> : ''}
-            {games.length > 0 ? <GamesList games={games}/> : <Loader/>}
+            {games.length > 0 ?
+                <GamesList games={games} hasMore={hasMoreGames} callback={getGames} params={params}/> :
+                <Loader/>}
         </div>
     );
 };

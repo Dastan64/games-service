@@ -2,8 +2,8 @@ import React from 'react';
 import styled from './PersonCard.module.css';
 import { Link } from 'react-router-dom';
 
-const PersonCard = ({developer}) => {
-    const {name, image, slug, image_background, positions, games_count, games} = developer ?? {};
+const PersonCard = ({ developer }) => {
+    const { name, image, slug, image_background, positions, games_count, games } = developer ?? {};
 
     return (
         <article className={styled.card} style={{

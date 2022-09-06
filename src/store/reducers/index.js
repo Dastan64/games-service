@@ -3,7 +3,7 @@ import { singleGameReducer } from './game';
 import { gamesReducer } from './games';
 import { platformsReducer } from './platforms';
 import { platformDetailsReducer } from './platformDetail';
-import { genreDetailsReducer } from './genreDetail';
+import { detailsReducer } from './details';
 import { genresReducer } from './genres';
 import { storesReducer } from './stores';
 import { followingReducer } from './following';
@@ -23,6 +23,6 @@ export const rootReducer = combineReducers({
     creators: creatorsReducer,
     tags: tagsReducer,
     platformDetails: platformDetailsReducer,
-    genreDetails: genreDetailsReducer,
+    details: detailsReducer,
     following: followingReducer,
 })
