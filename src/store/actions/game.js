@@ -48,10 +48,13 @@ export const getDLCs = (slug) => {
 
 export const getScreenshots = (slug) => {
     return (dispatch) => {
-        fetch(`${process.env.REACT_APP_BASE_URL}games/${slug}/screenshots?key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => dispatch({
-            type: GET_SCREENSHOTS,
-            payload: data.results,
-        })).catch(error => console.error(error))
+        fetch(`${process.env.REACT_APP_BASE_URL}games/${slug}/screenshots?page_size=10&key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => {
+            console.log(data);
+            dispatch({
+                type: GET_SCREENSHOTS,
+                payload: data.results,
+            })
+        }).catch(error => console.error(error))
     }
 }
 

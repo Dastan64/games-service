@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled from '../DetailsPage/DetailsPage.module.css';
 
 //Hooks
@@ -22,14 +22,19 @@ const DetailsPage = ({ source }) => {
     const dispatch = useDispatch();
     const { slug } = useParams();
     const id = useMemo(() => data.find(item => item.slug === slug)?.id, [data, slug]);
-    const params = { source, id }
+    const params = { source, id: id ?? slug }
 
     useEffect(() => {
         if (id) {
+            console.log('Hello, the one with id')
             dispatch(getDetails(source, id));
             dispatch(getGames(1, source, id));
+        } else {
+            console.log('Hello, the one without id')
+            dispatch(getDetails(source, slug));
+            dispatch(getGames(1, source, slug));
         }
-    }, [data, dispatch, id, source])
+    }, [slug, data, dispatch, id, source])
 
     useEffect(() => {
         if (games.length > 0) {
