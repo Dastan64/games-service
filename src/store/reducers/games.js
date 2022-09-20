@@ -24,7 +24,7 @@ export const gamesReducer = (state = initialState, action) => {
         case SET_HAS_MORE_GAMES:
             return { ...state, hasMore: action.payload }
         case SEARCH_GAMES:
-            return { ...state, searchedGames: action.payload }
+            return { ...state, searchedGames: [...state.searchedGames, ...action.payload] }
         case SET_HAS_MORE_SEARCHED_GAMES:
             return { ...state, hasMoreSearchedGames: action.payload }
         case LOAD_GAMES_INFO:
