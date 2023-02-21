@@ -26,11 +26,9 @@ const DetailsPage = ({ source }) => {
 
     useEffect(() => {
         if (id) {
-            console.log('Hello, the one with id')
             dispatch(getDetails(source, id));
             dispatch(getGames(1, source, id));
         } else {
-            console.log('Hello, the one without id')
             dispatch(getDetails(source, slug));
             dispatch(getGames(1, source, slug));
         }
@@ -40,7 +38,7 @@ const DetailsPage = ({ source }) => {
         if (games.length > 0) {
             dispatch(clearGames())
         }
-    }, [dispatch])
+    }, [slug, dispatch])
 
     return (
         <div>

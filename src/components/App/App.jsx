@@ -2,7 +2,7 @@
 import styled from './App.module.css';
 
 //Hooks and core
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -30,12 +30,12 @@ import CategoryPage from '../../pages/CategoryPage/CategoryPage';
 
 const App = () => {
     const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
-
+    const queryParams = useSelector(state => state.urlParams);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getGamesCount())
-        dispatch(getGames(1))
+        dispatch(getGames(queryParams))
         dispatch(getPlatforms(1))
         dispatch(getStores(1))
         dispatch(getGenres(1))

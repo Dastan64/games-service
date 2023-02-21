@@ -5,6 +5,7 @@ export const SET_HAS_MORE_SEARCHED_GAMES = 'SET_HAS_MORE_SEARCHED_GAMES';
 export const SET_HAS_MORE_GAMES = 'SET_HAS_MORE_GAMES';
 export const CLEAR_GAMES = 'CLEAR_GAMES';
 
+
 export const getGamesCount = () => {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_BASE_URL}games?key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => dispatch({
@@ -14,9 +15,12 @@ export const getGamesCount = () => {
     }
 }
 
-export const getGames = (page, source, id) => {
+export const getGames = (params) => {
+    console.log('I am launching')
+    const urlWithParams = (params) => Object.keys(params).filter(key => params[key]).map(key => `${key}=${params[key]}`).join('&');
+    console.log(`${process.env.REACT_APP_BASE_URL}games?${urlWithParams(params)}&key=${process.env.REACT_APP_API_KEY}`)
     return (dispatch) => {
-        fetch(`${process.env.REACT_APP_BASE_URL}games?page=${page}&${source}=${id}&page_size=10&key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => {
+        fetch(`${process.env.REACT_APP_BASE_URL}games?${urlWithParams(params)}&key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => {
             if (!data.next) {
                 dispatch({
                     type: SET_HAS_MORE_GAMES,
@@ -32,6 +36,7 @@ export const getGames = (page, source, id) => {
 }
 
 export const searchGames = (value, page) => {
+    console.log(`Забрал данные со страницы ${page}`);
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_BASE_URL}games?search=${value}&page=${page}&page_size=10&key=${process.env.REACT_APP_API_KEY}`).then(response => response.json()).then(data => {
             if (!data.next) {

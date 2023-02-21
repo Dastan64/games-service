@@ -5,7 +5,6 @@ import GamesList from '../../components/GamesList/GamesList';
 import reusableStyles from '../../reusable/reusable.module.css';
 import styled from './Home.module.css';
 import { useSelector } from 'react-redux';
-import { getGames } from '../../store/actions/games';
 
 //Components
 import MobileNav from '../../components/MobileNav/MobileNav';
@@ -18,7 +17,7 @@ const Home = ({ isMobileMenuActive, setIsMobileMenuActive }) => {
         <section>
             <MobileNav active={isMobileMenuActive} setIsMobileMenuActive={setIsMobileMenuActive}/>
             <h1 className={`${reusableStyles.mainHeading} ${styled.homepageTitle}`}>Top Picks</h1>
-            <GamesList games={games} hasMore={hasMoreGames} callback={getGames}/>
+            <GamesList games={games} hasMore={hasMoreGames}/>
         </section>
     );
 };

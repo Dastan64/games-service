@@ -11,6 +11,7 @@ import { tagsReducer } from './tags';
 import { developersReducer } from './developers';
 import { publishersReducer } from './publishers';
 import { creatorsReducer } from './creators';
+import { urlParamsReducer } from './urlParams';
 
 export const rootReducer = combineReducers({
     games: gamesReducer,
@@ -25,4 +26,5 @@ export const rootReducer = combineReducers({
     platformDetails: platformDetailsReducer,
     details: detailsReducer,
     following: followingReducer,
+    urlParams: urlParamsReducer,
 })
